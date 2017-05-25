@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Community Vessells</title>
+	<script src="https://use.fontawesome.com/a5b3607a6e.js"></script>
+  <!-- Material Design fonts -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
+
+
+
+
+	<!-- Custom Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Anton|Lobster|Paytone+One" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- Bootstrap Material Design -->
+  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap-material-design/dist/css/ripples.min.css">
+	<!-- Custom Design -->
+	<link rel="stylesheet" type="text/css" href="css/palette.css">
+	<link rel="stylesheet" type="text/css" href="css/text.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Captcha -->
+	<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body id="comVessells" data-spy="scroll" data-target=".navbar" data-offset="60">
+	<!-- Sign Up Modal -->
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title">Sign Up</h3>
+				</div>
+				<div class="modal-body">
+					<!--form start-->
+					<form class="form-horizontal">
+						<fieldset>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="form-group"  >
+							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword3" placeholder="Password" required>
+							</div>
+						</div>
+						<div class="form-group">
+					      <label class="col-md-2 control-label"></label>
+
+					      <div class="col-md-10">
+					        <div class="radio radio-primary">
+					          <label>
+					            <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">
+					            I am a Volunteer
+					          </label>
+					        </div>
+					        <div class="radio radio-primary">
+					          <label>
+					            <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
+					            I am an Organization
+					          </label>
+					        </div>
+					      </div>
+
+					    </div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-md-10">
+								<button type="submit" class="btn btn-primary">Sign Up</button>
+								<button type="reset" class="btn btn-default">Reset</button>
+							</div>
+						</div>
+					</fieldset>
+					</form>
+					<!--form end-->
+				</div>
+				<div class="modal-footer">
+			         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			  </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title">Login</h3>
+				</div>
+				<div class="modal-body">
+					<!--form start-->
+					<form class="form-horizontal">
+						<fieldset>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="form-group"  >
+							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword3" placeholder="Password" required>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox"> Remember me
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-md-10">
+								<button type="submit" class="btn  btn-primary">Submit</button>
+								<button type="reset" class="btn  btn-default">Reset</button>
+							</div>
+						</div>
+					</fieldset>
+					</form>
+					<!--form end-->
+				</div>
+				<div class="modal-footer">
+			         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			  </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- Navbar start -->
+	<div class="navbar dark-primary-color navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="javascript:void(0)">Home</a>
+	    </div>
+	    <div class="navbar-collapse collapse navbar-inverse-collapse">
+	      <ul class="nav navbar-nav">
+	        <li class="hover-ul"><a href="#signUpModal" data-toggle="modal">Sign Up</a></li>
+	        <li class="hover-ul"><a href="#Purpose">Purpose</a></li>
+					<li class="hover-ul"><a href="javascript:void(0)">Requests</a></li>
+					<li class="hover-ul"><a href="javascript:void(0)">Contact</a></li>
+	      </ul>
+
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="hover-ul"><a href="#loginModal" data-toggle="modal"><i class="material-icons md-24">input</i> <b>Login</b></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</div>
+ <!-- Navbar end-->
+ <div class="container-fluid">
+
+	<!-- Jumbotron -->
+  <div class="jumbotron text-center default-primary-color">
+		<div class="container-fluid">
+			<div class="row main">
+		<div class="col-sm-2 col-md-2 pull-left"><a href="index.html"><img class="img-responsive" src="../Images/ffcclogo.png" alt="FFCC logo"></a></div>
+		<div class="col-sm-10 text-center">
+    <h1 id="logo">COMM<span class="text-primary-color">UNITY</span> VES<span class="text-primary-color">SELLS</span></h1>
+
+    <h3 id="logo-small">Creating Volunteer Channels</h3>
+		</div>
+  </div>
+</div>
+</div>
+<!-- Image Well -->
+<div class="container-fluid">
+	<div class="row">
+
+		<img class="img-responsive" id="disclaimer" src="../Images/Feed_Logo_Color.png" alt="Feed Logo">
+
+	</div>
+</div>
+
+<!-- purpose -->
+<div class="container-fluid"  id="Purpose">
+	<div><i class="fa fa-heartbeat fa-5x pull-right text-accent-color slideanim" aria-hidden="true"></i>
+  <h1 id="purpose" class="primary-text-color">Our Mission:</h1>
+	<p class="primary-text-color">To create a platform ,for different and diverse organizations, to optimize their logistics for the purpose of gathering and distributing food , pharmaceutical &amp; material aid , allow volunteers to contribute specific amounts of products based on  calculated needs of the organizations and help them achieve their goals on their charity work and humanitarian projects.</p>
+	<hr class="divider-color">
+	<h1 id="purpose" class="primary-text-color slideanim"><small>How it Works 	<i class="fa fa-cog fa-spin fa-2x fa-fw"></i>
+		<span class="sr-only"></span></small></h1>
+
+	<p  class="primary-text-color">The Community Vessells Platform works on a basis of <em>&quot;requests&quot;</em> issued by the participating organizations. Each volunteer can sign-in and declare his/her interest in participating on a specific request.The <strong>contributions system</strong> ,unobtrusively, obliges each volunteer to commit to a number of deliverable items per request as a <em>&quot;promise to keep&quot;.</em></p>
+	<p class="primary-text-color">A simple logistics application panel helps each organization to keep track of their current needs and material aid repositories ,issue new requests and estimate <strong>&quot;fullfilment conditions&quot;</strong> per request ,based on the information of <em>&quot;promises&quot;</em> provided by the volunteers and the actual tracking of products stored ,during the collecting process. </p>
+
+</div>
+</div>
+<div class="container main slideanim"  id="Signup">
+<button id="lowercse" class="btn btn-raised btn-block text-center accent-color" type="button" data-toggle="modal" data-target="#signUpModal">
+	<h2 id="logo-small" class="text-primary-color text-center">Join The Cause</h2></button>
+
+
+</div>
+
+</div>
+
+<!-- footer -->
+<footer>
+	<div class="container-fluid dark-primary-color" id="footer">
+		<div class="row main">
+			<div class="col-xs-12">
+				<p class="text-center  text-primary-color">&copy; Copyright 2017 FFCC</p>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- End footer -->
+
+
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="../node_modules/bootstrap-material-design/dist/js/material.min.js"></script>
+<script src="../node_modules/bootstrap-material-design/dist/js/ripples.min.js"></script>
+<script>
+  $(function () {
+    $.material.init();
+		$.material.ripples();
+    $(".shor").noUiSlider({
+      start: 40,
+      connect: "lower",
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+
+    $(".svert").noUiSlider({
+      orientation: "vertical",
+      start: 40,
+      connect: "lower",
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+  });
+</script>
+
+<!-- Smooth Scrolling -->
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#comVessells']").on('click', function(event) {
+
+   // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 900, function(){
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
+
+<!--Animate objects  -->
+<script>
+$(window).scroll(function() {
+  $(".slideanim").each(function(){
+    var pos = $(this).offset().top;
+
+    var winTop = $(window).scrollTop();
+    if (pos < winTop + 600) {
+      $(this).addClass("slide");
+    }
+  });
+});
+</script>
+</body>
+</html>
