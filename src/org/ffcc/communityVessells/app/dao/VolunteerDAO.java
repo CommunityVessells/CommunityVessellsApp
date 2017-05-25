@@ -43,7 +43,7 @@ public class VolunteerDAO {
 			return volunteerList;
 		}
 		catch(SQLException sqlE){
-			throw new Exception("An error occured while getting students from database: " + sqlE.getMessage());
+			throw new Exception("An error occured while getting volunteers from database: " + sqlE.getMessage());
 		}
 		finally {
 			try{
