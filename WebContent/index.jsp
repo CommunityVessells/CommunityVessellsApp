@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="static_resources/head.html" %>
@@ -8,18 +8,58 @@
 <body id="comVessells" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 <%@ include file="static_resources/signupModal.html" %>
+
 <%@ include file="static_resources/loginModal.html" %>
+
 <!-- Navbar start -->
 <%@ include file="static_resources/navbar.html" %>
 <!-- Navbar end-->
 
 <div class="container-fluid">
 
+		<% if(request.getAttribute("successmessage") != null) { %>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+    				<h3 class="panel-title text-center" id="panelTitle">Success!</h3>
+  				</div>
+  				<div class="panel-body">
+   					<p class="text-center text-success"><%=(String)request.getAttribute("successmessage") %></p>
+					<div class="text-center">
+					<button class="btn btn-success btn-raised text-center"  type="button" data-toggle="modal" data-target="#loginModal"><b>LOGIN</b></button>
+					</div>
+  				</div>
+			</div>	
+
+			
+		<% }
+		
+		   if(request.getAttribute("errormessage") != null) {
+		%>
+
+			
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+    				<h3 class="panel-title text-center" id="panelTitle">Register Error!</h3>
+  				</div>
+  				<div class="panel-body">
+   					<p class="text-center text-danger"><%=(String)request.getAttribute("errormessage") %></p>
+					<div class="text-center">
+					<button class="btn btn-danger btn-raised text-center"  type="button" data-toggle="modal" data-target="#signUpModal"><b>TRY AGAIN</b></button>
+					</div>
+  				</div>
+			</div>
+				
+				
+			
+
+			
+		<%  } %>
+
 <!-- Jumbotron -->
   <div class="jumbotron text-center default-primary-color">
 		<div class="container-fluid">
 			<div class="row main">
-		<div class="col-sm-2 col-md-2 pull-left"><a href="index.html"><img class="img-responsive" src="Images/ffcclogo.png" alt="FFCC logo"></a></div>
+		<div class="col-sm-2 col-md-2 pull-left"><a href=""><img class="img-responsive" src="Images/ffcclogo.png" alt="FFCC logo"></a></div>
 		<div class="col-sm-10 text-center">
     <h1 id="logo">COMM<span class="text-primary-color">UNITY</span> VES<span class="text-primary-color">SELLS</span></h1>
 
@@ -28,6 +68,8 @@
   </div>
 </div>
 </div>
+
+
 
 <!-- Image Well -->
 <div class="container-fluid">
@@ -62,6 +104,7 @@
 </div>
 
 <%@ include file="static_resources/footer.html" %>
+
 <%@ include file="static_resources/scriptIncludes.html" %>
 
 <%@ include file="static_resources/initScript.html" %>
