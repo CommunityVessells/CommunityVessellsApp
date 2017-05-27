@@ -37,6 +37,11 @@ p {font-size: 1.4em !important;}
   padding-top: 1em;
 }
 
+
+
+#error{
+	color:#F2C5A6;	
+}
 .carousel-control.right, .carousel-control.left {
     background-image: none;
     color: #f4511e;

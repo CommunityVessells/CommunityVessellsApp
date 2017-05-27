@@ -17,14 +17,14 @@
 
 <div class="container-fluid">
 
-<div class="jumbotron text-center" id="errorJumbotron">
+<div class="jumbotron text-center dark-primary-color">
 		<div class="container-fluid">
 			<div class="row main">
-			<div class="alert alert-danger">
+			
 				<h1 class="text-center" id="error">Oops! Something Went Horribly Wrong!</h1>
-			</div>
+			
 			<div class="row">				
-					<img class="img-responsive img-rounded center-block" style="width:80%;margin-bottom:2em;"  src="Images/fallout.png" alt="Fallout">
+					<img class="img-responsive center-block" style="width:80%;margin-bottom:2em;"  src="Images/fallout.png" alt="Fallout">
 			</div>
 			</div>
 		</div>
