@@ -27,4 +27,9 @@ public class EncryptMD5 {
 		}
 		return null;
 	}
+	
+	public static boolean authenticateUser(String input, String hash){
+		//check if the input password is stored as a hash in the database
+		return EncryptMD5.encrypt(input).equals(hash);
+	}
 }

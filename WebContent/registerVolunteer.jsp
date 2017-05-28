@@ -12,7 +12,7 @@
 
 
 <div>
-	<%if (EncryptMD5.encrypt(request.getParameter("password")).equals(request.getAttribute("hash"))) { %>
+	<%if (EncryptMD5.authenticateUser((String)request.getParameter("password"),(String)request.getAttribute("hash"))) { %>
 	<h1>Password ok</h1>
 	<p><%=(String)request.getAttribute("hash") %></p>
 	<%} %>
