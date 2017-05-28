@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ffcc.communityVessells.app.encryption.EncryptMD5;
+
+
+
 
 /**
  * Servlet implementation class RegisterController
@@ -39,8 +43,10 @@ public class RegisterController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
+		
 		String email= request.getParameter("email");
 		String password= request.getParameter("password");
+		
 		
 		//Check for valid email address
 		if(email.isEmpty() || !email.contains("@")) {
@@ -51,12 +57,16 @@ public class RegisterController extends HttpServlet {
 		}
 		
 		//Check for valid password
+		//TODO a method to authenticate using encryption and storing hashes in database
 		if(password.isEmpty() || password.length()<8) {
 			RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
 			request.setAttribute("errormessage", "The password entered is smaller than 8 characters long.");
 			
 			errorDispatcher.forward(request, response); 
 		}
+		
+		//Create MD5 hash of password
+		request.setAttribute("hash", EncryptMD5.encrypt(password));
 		
 		//Send credentials to the next screen based on user=volunteer or user=organization
 		if(request.getParameter("optionsRadios").equals("organization")){
