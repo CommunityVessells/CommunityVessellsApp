@@ -57,7 +57,7 @@ public class RegisterController extends HttpServlet {
 		}
 		
 		//Check for valid password
-		//TODO a method to authenticate using encryption and storing hashes in database
+		
 		if(password.isEmpty() || password.length()<8) {
 			RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
 			request.setAttribute("errormessage", "The password entered is smaller than 8 characters long.");
@@ -65,7 +65,9 @@ public class RegisterController extends HttpServlet {
 			errorDispatcher.forward(request, response); 
 		}
 		
-		//Create MD5 hash of password
+		/*Create MD5 hash of password.
+		* TODO  Use OAuth2 and SSL. Keeping a request channel unencrypted ,
+		defeats the purpose of hashing passwords into database.*/
 		request.setAttribute("hash", EncryptMD5.encrypt(password));
 		
 		//Send credentials to the next screen based on user=volunteer or user=organization
