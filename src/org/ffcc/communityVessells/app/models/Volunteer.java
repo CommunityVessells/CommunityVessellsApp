@@ -12,8 +12,7 @@ import java.io.IOException;
 public class Volunteer extends User {
 	private  int userID;
 	private String firstName;
-	private String lastName;
-	private int promises;
+	private String lastName;	
 	
 	public Volunteer(String email, String password,String username) {
 		super(email, password,username);
@@ -24,13 +23,12 @@ public class Volunteer extends User {
 		super(email, password, username,avatar);
 	}
 
-	public Volunteer(String email, String password, String username,InputStream avatar,int  userID, String firstName, String lastName,int promises) {
+	public Volunteer(String email, String password, String username,InputStream avatar,int  userID, String firstName, String lastName) {
 		super(email, password, username,avatar);
 		
 		this.userID = userID;
 		this.firstName = firstName;
-		this.lastName = lastName;
-		this.promises = promises;
+		this.lastName = lastName;		
 	}
 
 	public String getFirstName() {
@@ -49,13 +47,7 @@ public class Volunteer extends User {
 		this.lastName = lastName;
 	}
 
-	public int getPromises() {
-		return promises;
-	}
-
-	public void setPromises(int promises) {
-		this.promises = promises;
-	}
+	
 
 	public int getUserID() {
 		return userID;

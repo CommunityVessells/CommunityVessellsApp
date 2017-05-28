@@ -35,7 +35,7 @@ public class VolunteerDAO {
 			
 			LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
 			while(rs.next()){
-				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getBlob("avatar").getBinaryStream(),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName"),rs.getInt("promises")));
+				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getBlob("avatar").getBinaryStream(),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName")));
 			}
 			rs.close();
 			selectst.close();
@@ -57,7 +57,7 @@ public class VolunteerDAO {
 	}
 	 public void saveVolunteer(Volunteer volunteer) throws Exception{
 			Connection con = null;
-			String sqlcreate = "INSERT INTO  volunteer (promises, email, password,username,firstName,lastName,avatar) VALUES (? , ? , ? , ? , ? , ? , ?);";
+			String sqlcreate = "INSERT INTO  volunteer (email, password,username,firstName,lastName,avatar) VALUES (? , ? , ? , ? , ? , ?);";
 			DB db = new DB();
 			
 			try{
@@ -66,13 +66,13 @@ public class VolunteerDAO {
 				
 				PreparedStatement insertst = con.prepareStatement(sqlcreate);
 				
-				insertst.setInt(1, volunteer.getPromises());
-				insertst.setString(2, volunteer.getEmail());
-				insertst.setString(3, volunteer.getPassword());
-				insertst.setString(4, volunteer.getUsername());
-				insertst.setString(5, volunteer.getFirstName());
-				insertst.setString(6, volunteer.getLastName());
-				insertst.setBlob(7, volunteer.getAvatar());
+				
+				insertst.setString(1, volunteer.getEmail());
+				insertst.setString(2, volunteer.getPassword());
+				insertst.setString(3, volunteer.getUsername());
+				insertst.setString(4, volunteer.getFirstName());
+				insertst.setString(5, volunteer.getLastName());
+				insertst.setBlob(6, volunteer.getAvatar());
 				
 				insertst.executeUpdate();
 				insertst.close();
