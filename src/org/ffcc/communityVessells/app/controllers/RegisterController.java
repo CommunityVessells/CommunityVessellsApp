@@ -2,12 +2,16 @@ package org.ffcc.communityVessells.app.controllers;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.ffcc.communityVessells.app.dao.VolunteerDAO;
 import org.ffcc.communityVessells.app.encryption.EncryptMD5;
 
 
@@ -56,6 +60,13 @@ public class RegisterController extends HttpServlet {
 					errorDispatcher.forward(request, response); 
 		}
 		
+		//Check if email exists
+		if(new VolunteerDAO().ifExistsByEmail(email)) {
+			RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
+			request.setAttribute("errormessage", "This e-mail address already exists.");
+			
+			errorDispatcher.forward(request, response); 
+		}
 		//Check for valid password
 		
 		if(password.isEmpty() || password.length()<8) {
@@ -68,7 +79,8 @@ public class RegisterController extends HttpServlet {
 		/*Create MD5 hash of password.
 		* TODO  Use OAuth2 and SSL. Keeping a request channel unencrypted ,
 		defeats the purpose of hashing passwords into database.*/
-		request.setAttribute("hash", EncryptMD5.encrypt(password));
+		HttpSession session = request.getSession(true);
+		session.setAttribute("hash", EncryptMD5.encrypt(password));
 		
 		//Send credentials to the next screen based on user=volunteer or user=organization
 		if(request.getParameter("optionsRadios").equals("organization")){

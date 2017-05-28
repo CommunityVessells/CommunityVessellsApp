@@ -54,7 +54,7 @@ public class VolunteerDAO {
 				e.printStackTrace();
 			}
 		}
-	}
+	 }
 	 public void saveVolunteer(Volunteer volunteer) throws Exception{
 			Connection con = null;
 			String sqlcreate = "INSERT INTO  volunteer (email, password,username,firstName,lastName,avatar) VALUES (? , ? , ? , ? , ? , ?);";
@@ -89,6 +89,20 @@ public class VolunteerDAO {
 					e.printStackTrace();
 				}
 			}
+	 }
+	 
+	 public boolean ifExistsByEmail(String email){
+		 LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
+		 try{
+			 volunteerList=this.getVolunteers();
+		 }
+		 catch(Exception e){
+			 e.printStackTrace();
+		 }
+		 for(Volunteer vol:volunteerList){
+			 if(vol.getEmail().equals(email)) return true;
+		 }
+		 return false;
 	 }
 	
 	

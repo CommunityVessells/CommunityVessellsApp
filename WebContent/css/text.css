@@ -5,3 +5,4 @@
 #panelTitle {text-transform: uppercase;}
 #error { font-family: 'Anton', sans-serif;}
 #errorJumbotron{background-color:#f44336;}
+.anton { font-family: 'Anton', sans-serif !important;}
