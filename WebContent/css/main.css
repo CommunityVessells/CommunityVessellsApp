@@ -9,7 +9,9 @@ body { padding-top: 5.7em !important; }
 
 }
 
-p {font-size: 1.4em !important;}
+.maintext{font-size: 1.4em !important;}
+
+
 
 #lowercse {
   text-transform: capitalize;

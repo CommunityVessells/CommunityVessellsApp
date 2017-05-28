@@ -84,13 +84,13 @@
 <div class="container-fluid"  id="Purpose">
 	<div><i class="fa fa-heartbeat fa-5x pull-right text-accent-color slideanim" aria-hidden="true"></i>
   <h1 id="purpose" class="primary-text-color">Our Mission:</h1>
-	<p class="primary-text-color">To create a platform ,for different and diverse organizations, to optimize their logistics for the purpose of gathering and distributing food , pharmaceutical &amp; material aid , allow volunteers to contribute specific amounts of products based on  calculated needs of the organizations and help them achieve their goals on their charity work and humanitarian projects.</p>
+	<p class="primary-text-color maintext">To create a platform ,for different and diverse organizations, to optimize their logistics for the purpose of gathering and distributing food , pharmaceutical &amp; material aid , allow volunteers to contribute specific amounts of products based on  calculated needs of the organizations and help them achieve their goals on their charity work and humanitarian projects.</p>
 	<hr class="divider-color">
 	<h1 id="purpose" class="primary-text-color slideanim"><small>How it Works 	<i class="fa fa-cog fa-spin fa-2x fa-fw"></i>
 		<span class="sr-only"></span></small></h1>
 
-	<p  class="primary-text-color">The Community Vessells Platform works on a basis of <em>&quot;requests&quot;</em> issued by the participating organizations. Each volunteer can sign-in and declare his/her interest in participating on a specific request.The <strong>contributions system</strong> ,unobtrusively, obliges each volunteer to commit to a number of deliverable items per request as a <em>&quot;promise to keep&quot;.</em></p>
-	<p class="primary-text-color">A simple logistics application panel helps each organization to keep track of their current needs and material aid repositories ,issue new requests and estimate <strong>&quot;fullfilment conditions&quot;</strong> per request ,based on the information of <em>&quot;promises&quot;</em> provided by the volunteers and the actual tracking of products stored ,during the collecting process. </p>
+	<p  class="primary-text-color maintext">The Community Vessells Platform works on a basis of <em>&quot;requests&quot;</em> issued by the participating organizations. Each volunteer can sign-in and declare his/her interest in participating on a specific request.The <strong>contributions system</strong> ,unobtrusively, obliges each volunteer to commit to a number of deliverable items per request as a <em>&quot;promise to keep&quot;.</em></p>
+	<p class="primary-text-color maintext">A simple logistics application panel helps each organization to keep track of their current needs and material aid repositories ,issue new requests and estimate <strong>&quot;fullfilment conditions&quot;</strong> per request ,based on the information of <em>&quot;promises&quot;</em> provided by the volunteers and the actual tracking of products stored ,during the collecting process. </p>
 
 </div>
 </div>

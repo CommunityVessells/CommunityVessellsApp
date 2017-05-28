@@ -5,6 +5,7 @@
 package org.ffcc.communityVessells.app.dao;
 
 import java.io.InputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class VolunteerDAO {
 			
 			PreparedStatement selectst = con.prepareStatement(sqlquery);
 			ResultSet rs = selectst.executeQuery();
-			
+		
 			LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
 			while(rs.next()){
 				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getBlob("avatar").getBinaryStream(),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName")));

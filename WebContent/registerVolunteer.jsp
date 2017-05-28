@@ -21,6 +21,7 @@
 					<div class="well container">
 					<!--form start-->
 					<form class="form-horizontal" action="registervolunteer" method="post">
+					
 						<fieldset>
 						<legend class="anton text-right">Submit your Details</legend>
 	
@@ -28,43 +29,49 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 							<div class="col-sm-10">
-								<input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" value="<%=request.getParameter("email") %>" readonly>
+								<input type="text" name="email" class="form-control" id="inputEmail3" placeholder="Email" value="<%=session.getAttribute("email") %>" readonly>
 							</div>
 						</div>
 						<div class="form-group"  >
-							<label for="inputPassword3" class="col-sm-2 control-label">Retype Password</label>
+							<label for="inputUsername" class="col-sm-2 control-label">Username</label>
 							<div class="col-sm-10">
-								<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" value="<%=request.getParameter("password") %>" readonly>
-								
-								
+								<input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username">
 							</div>
 						</div>
+
+						<div class="form-group"  >
+							<label for="inputFirstname" class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input type="text" name="firstname" class="form-control" id="inputFirstname" placeholder="First Name">
+							</div>
+						</div>
+						
+						<div class="form-group"  >
+							<label for="inputLastname" class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input type="text" name="lastname" class="form-control" id="inputLastname" placeholder="Last Name">
+							</div>
+						</div>
+						
 						<div class="form-group">
-					      <label class="col-md-2 control-label"></label>
+      						<label for="inputFile" class="col-md-2 control-label">Upload Avatar Image</label>
+							<div class="col-md-10">
+        						<input readonly="" class="form-control" placeholder="Browse..." type="text">        						
+        						<input id="inputFile" name="avatar" multiple="" type="file" accept="image/x-png,image/gif,image/jpeg">
 
-					      <div class="col-md-10">
-					        <div class="radio radio-primary">
-					          <label>
-					            <input name="optionsRadios" id="optionsRadios1" value="volunteer" checked="" type="radio">
-					            I am a Volunteer
-					          </label>
-					        </div>
-					        <div class="radio radio-primary">
-					          <label>
-					            <input name="optionsRadios" id="optionsRadios2" value="organization" type="radio">
-					            I am an Organization
-					          </label>
-					        </div>
-					      </div>
+        						<p class="help-block" id="helper">Only png,jpeg or gif files accepted.<br>Recommended size 150 x 150. File upload limit: 16Mb</p>
+      						</div>
+    					</div>						
 
-					    </div>
+
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-md-10">
-								<button type="submit" class="btn btn-primary">Sign Up</button>
+								<button type="submit" class="btn btn-primary">Save</button>
 								<button type="reset" class="btn btn-default">Reset</button>
 							</div>
 						</div>
 					</fieldset>
+					
 					</form>
 					<!--form end-->
 					</div>

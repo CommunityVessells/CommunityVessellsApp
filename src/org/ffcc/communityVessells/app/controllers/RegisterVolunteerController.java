@@ -46,11 +46,9 @@ public class RegisterVolunteerController extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		System.out.println((String)session.getAttribute("hash"));
 		
-		System.out.println(request.getParameter("email"));
+		System.out.println(session.getAttribute("email"));
 		
-		if(EncryptMD5.authenticateUser((String)request.getParameter("password"), (String)session.getAttribute("hash"))){
-			System.out.println((String)request.getParameter("password"));
-		}
+		
 	}
 
 }

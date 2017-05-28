@@ -50,8 +50,9 @@ public class RegisterController extends HttpServlet {
 		
 		String email= request.getParameter("email");
 		String password= request.getParameter("password");
+
 		
-		
+
 		//Check for valid email address
 		if(email.isEmpty() || !email.contains("@")) {
 					RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
@@ -80,7 +81,10 @@ public class RegisterController extends HttpServlet {
 		* TODO  Use OAuth2 and SSL. Keeping a request channel unencrypted ,
 		defeats the purpose of hashing passwords into database.*/
 		HttpSession session = request.getSession(true);
+
+		session.setAttribute("email", email);
 		session.setAttribute("hash", EncryptMD5.encrypt(password));
+		
 		
 		//Send credentials to the next screen based on user=volunteer or user=organization
 		if(request.getParameter("optionsRadios").equals("organization")){
