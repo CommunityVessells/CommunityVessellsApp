@@ -10,12 +10,14 @@ public class EncryptMD5 {
 		try{
 			//instantiate MD5 algorithm
 			digest=MessageDigest.getInstance("MD5");
-			//get the bytes of the password and calculated the digested bytes
+			//get the bytes of the password and calculate the digested bytes
 			byte[] passwordBytes=password.getBytes();
 			digest.reset();
 			byte[] digestedBytes = digest.digest(passwordBytes);
 			StringBuffer output = new StringBuffer();
 			for(int i=0;i<digestedBytes.length;i++){
+				/* digested[i] & 0xff ensures that only the 8 least significant 
+				 * bits of digested[i] can be non-zero */
 				output.append(Integer.toHexString(0xff & digestedBytes[i]));
 			}
 			return output.toString();
