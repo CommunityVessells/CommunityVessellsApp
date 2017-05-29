@@ -1,8 +1,9 @@
 package org.ffcc.communityVessells.app.controllers;
 
+import java.io.File;
 import java.io.IOException;
 
-
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +44,16 @@ public class RegisterVolunteerController extends HttpServlet {
 		
 		
 		HttpSession session = request.getSession(true);
-		System.out.println((String)session.getAttribute("hash"));
+		//System.out.println((String)session.getAttribute("hash"));
 		
-		System.out.println(session.getAttribute("email"));
+		//System.out.println(session.getAttribute("email"));
+		ServletContext application = request.getServletContext();
 		
+		
+		String destinationRealPath = application.getRealPath("/Images/UserImages");
+		//System.out.println(destinationRealPath );
+		File uploads = new File(destinationRealPath);
+		System.out.println(uploads.getAbsolutePath());
 		
 	}
 
