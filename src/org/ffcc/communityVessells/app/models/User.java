@@ -13,7 +13,7 @@ public class User {
 	private String email;
 	private String password;
 	private String username;
-	private InputStream avatar; //store image object as InputStream to get/set to mediumblob in mySql.
+	private String avatar; //store image object as filepath saved.
 	
 	
 	public User(String email, String password,String username) {
@@ -23,7 +23,7 @@ public class User {
 		this.username = username;
 	}
 
-	public User(String email, String password, String username,InputStream avatar) {
+	public User(String email, String password, String username,String avatar) {
 		super();
 		
 		this.email = email;
@@ -51,13 +51,14 @@ public class User {
 		this.username = username;
 	}
 
-	public InputStream getAvatar() {
+	public String getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(InputStream avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+
 
 
 	

@@ -19,11 +19,11 @@ public class Volunteer extends User {
 		
 	}
 
-	public Volunteer(String email, String password, String username,InputStream avatar) {
+	public Volunteer(String email, String password, String username,String avatar) {
 		super(email, password, username,avatar);
 	}
 
-	public Volunteer(String email, String password, String username,InputStream avatar,int  userID, String firstName, String lastName) {
+	public Volunteer(String email, String password, String username,String avatar,int  userID, String firstName, String lastName) {
 		super(email, password, username,avatar);
 		
 		this.userID = userID;

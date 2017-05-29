@@ -4,11 +4,6 @@
 
 package org.ffcc.communityVessells.app.dao;
 
-import java.io.InputStream;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -36,7 +31,7 @@ public class VolunteerDAO {
 		
 			LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
 			while(rs.next()){
-				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getBlob("avatar").getBinaryStream(),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName")));
+				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName")));
 			}
 			rs.close();
 			selectst.close();
@@ -73,7 +68,7 @@ public class VolunteerDAO {
 				insertst.setString(3, volunteer.getUsername());
 				insertst.setString(4, volunteer.getFirstName());
 				insertst.setString(5, volunteer.getLastName());
-				insertst.setBlob(6, volunteer.getAvatar());
+				insertst.setString(6, volunteer.getAvatar());
 				
 				insertst.executeUpdate();
 				insertst.close();
@@ -92,18 +87,37 @@ public class VolunteerDAO {
 			}
 	 }
 	 
-	 public boolean ifExistsByEmail(String email){
-		 LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
+	 public static Volunteer findVolunteerByEmail(String email) throws Exception{
+		 Connection con = null;
+		 String sqlquery = "SELECT * FROM volunteer WHERE email=?;";
+		 DB db = new DB();
+		 
 		 try{
-			 volunteerList=this.getVolunteers();
-		 }
-		 catch(Exception e){
-			 e.printStackTrace();
-		 }
-		 for(Volunteer vol:volunteerList){
-			 if(vol.getEmail().equals(email)) return true;
-		 }
-		 return false;
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setString(1, email);
+				ResultSet rs=selectst.executeQuery();
+				if(rs.next()){
+					return new Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName"));
+				}
+				
+				selectst.close();
+				return null;
+		 	}
+		 	catch(Exception e){
+		 		throw new Exception("An error occured while searching in database: "+e.getMessage());
+		 	}
+		 	finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+	
+		 	}
+		 
 	 }
 	
 	

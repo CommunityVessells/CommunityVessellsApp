@@ -2,7 +2,6 @@ package org.ffcc.communityVessells.app.controllers;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,29 +13,28 @@ import javax.servlet.http.HttpSession;
 import org.ffcc.communityVessells.app.dao.VolunteerDAO;
 import org.ffcc.communityVessells.app.encryption.EncryptMD5;
 
-
-
-
 /**
  * Servlet implementation class RegisterController
  */
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterController() {
-        super();
-        
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+	public RegisterController() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	/**
@@ -62,11 +60,16 @@ public class RegisterController extends HttpServlet {
 		}
 		
 		//Check if email exists
-		if(new VolunteerDAO().ifExistsByEmail(email)) {
-			RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
-			request.setAttribute("errormessage", "This e-mail address already exists.");
+		try{
+			if(VolunteerDAO.findVolunteerByEmail(email)!=null) {
+				RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
+				request.setAttribute("errormessage", "This e-mail address already exists.");
 			
-			errorDispatcher.forward(request, response); 
+				errorDispatcher.forward(request, response); 
+			}
+		}
+		catch(Exception e){
+			e.getMessage();
 		}
 		//Check for valid password
 		
