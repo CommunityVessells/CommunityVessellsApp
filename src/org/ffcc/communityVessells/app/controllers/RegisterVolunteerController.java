@@ -3,15 +3,12 @@ package org.ffcc.communityVessells.app.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,6 +58,7 @@ public class RegisterVolunteerController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		//Upload image using MultipartConfig and Servlet Api 3.0
 		
 		ServletContext app = request.getServletContext();
 		String destinationRealPath=app.getRealPath("/Images/UserImages");
@@ -77,7 +75,7 @@ public class RegisterVolunteerController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println(avatar.getPath());
+			
 			avatarPath= avatar.getPath();
 		}
 		String username = request.getParameter("username");
@@ -86,8 +84,7 @@ public class RegisterVolunteerController extends HttpServlet {
 
 		VolunteerDAO volToDb = new VolunteerDAO();
 		Volunteer createVol = new Volunteer((String)session.getAttribute("email"),(String)session.getAttribute("hash") , username, avatarPath);
-		System.out.println(session.getAttribute("hash"));
-		System.out.println(session.getAttribute("email"));
+		
 		createVol.setFirstName(firstname);
 		createVol.setLastName(lastname);
 		try{
