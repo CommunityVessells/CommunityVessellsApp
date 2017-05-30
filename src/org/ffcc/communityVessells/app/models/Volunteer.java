@@ -30,6 +30,14 @@ public class Volunteer extends User {
 		this.firstName = firstName;
 		this.lastName = lastName;		
 	}
+	
+	public Volunteer(String email, String password, String username,String avatar,int userID,String firstName, String lastName) {
+		super(email, password, username,avatar);
+		
+		this.userID = userID;
+		this.firstName = firstName;
+		this.lastName = lastName;		
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -47,9 +55,7 @@ public class Volunteer extends User {
 		this.lastName = lastName;
 	}
 
-	public void setUserID(int userID){
-		this.userID=userID;
-	}
+	
 
 	public int getUserID() {
 		return userID;

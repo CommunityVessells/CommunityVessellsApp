@@ -95,6 +95,9 @@ public class RegisterVolunteerController extends HttpServlet {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			request.setAttribute("errormessage", session.getAttribute("email")+" "+username+" could not be registered.Please try again.");
+			RequestDispatcher error = request.getRequestDispatcher("/"); 
+			error.forward(request, response);
 		}
 		
 	}
