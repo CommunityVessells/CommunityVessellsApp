@@ -23,10 +23,10 @@ public class Volunteer extends User {
 		super(email, password, username,avatar);
 	}
 
-	public Volunteer(String email, String password, String username,String avatar,int  userID, String firstName, String lastName) {
+	public Volunteer(String email, String password, String username,String avatar,String firstName, String lastName) {
 		super(email, password, username,avatar);
 		
-		this.userID = userID;
+		
 		this.firstName = firstName;
 		this.lastName = lastName;		
 	}
@@ -47,7 +47,9 @@ public class Volunteer extends User {
 		this.lastName = lastName;
 	}
 
-	
+	public void setUserID(int userID){
+		this.userID=userID;
+	}
 
 	public int getUserID() {
 		return userID;

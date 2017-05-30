@@ -20,7 +20,7 @@
 
 					<div class="well container">
 					<!--form start-->
-					<form class="form-horizontal" action="registervolunteer" method="post">
+					<form class="form-horizontal" action="registervolunteer" method="post" enctype="multipart/form-data">
 					
 						<fieldset>
 						<legend class="anton text-right">Submit your Details</legend>
@@ -57,7 +57,7 @@
       						<label for="inputFile" class="col-md-2 control-label">Upload Avatar Image</label>
 							<div class="col-md-10">
         						<input readonly="" class="form-control" placeholder="Browse..." type="text">        						
-        						<input id="inputFile" name="avatar" multiple="" type="file" accept="image/x-png,image/gif,image/jpeg">
+        						<input id="inputFile" name="file" multiple="" type="file" accept="image/x-png,image/gif,image/jpeg">
 
         						<p class="help-block" id="helper">Only png,jpeg or gif files accepted.<br>Recommended size 150 x 150. File upload limit: 16Mb</p>
       						</div>

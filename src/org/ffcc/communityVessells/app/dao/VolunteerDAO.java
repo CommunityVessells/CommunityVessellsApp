@@ -31,7 +31,7 @@ public class VolunteerDAO {
 		
 			LinkedList<Volunteer> volunteerList = new LinkedList<Volunteer>();
 			while(rs.next()){
-				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName")));
+				volunteerList.add(new  Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getString("firstName"),rs.getString("lastName")));
 			}
 			rs.close();
 			selectst.close();
@@ -74,8 +74,8 @@ public class VolunteerDAO {
 				insertst.close();
 				
 			}catch (SQLException e) {
-
-				throw new Exception("Volunteer with ID: " + volunteer.getUserID() + " already exists");
+				e.printStackTrace();
+				//throw new Exception("Volunteer with ID: " + volunteer.getUserID() + " already exists");
 			}catch (Exception e){
 				throw new Exception("An error occured while inserting user to database: " + e.getMessage());
 			}finally{
@@ -100,7 +100,7 @@ public class VolunteerDAO {
 				selectst.setString(1, email);
 				ResultSet rs=selectst.executeQuery();
 				if(rs.next()){
-					return new Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName"));
+					return new Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getString("firstName"),rs.getString("lastName"));
 				}
 				
 				selectst.close();
