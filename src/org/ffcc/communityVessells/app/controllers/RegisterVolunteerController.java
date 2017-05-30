@@ -3,11 +3,15 @@ package org.ffcc.communityVessells.app.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +40,7 @@ public class RegisterVolunteerController extends HttpServlet {
 	}
 
 	/**
+	 * @throws IOException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -45,9 +50,11 @@ public class RegisterVolunteerController extends HttpServlet {
 	}
 
 	/**
+	 * 
+	 * @throws IOException 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -85,6 +92,9 @@ public class RegisterVolunteerController extends HttpServlet {
 		createVol.setLastName(lastname);
 		try{
 			volToDb.saveVolunteer(createVol);
+			request.setAttribute("successmessage", session.getAttribute("email")+" "+username+" has been successfully registered");
+			RequestDispatcher success = request.getRequestDispatcher("/"); 
+			success.forward(request, response);
 		}
 		catch(Exception e){
 			e.printStackTrace();
