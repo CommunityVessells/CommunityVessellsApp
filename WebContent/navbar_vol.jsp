@@ -12,11 +12,12 @@
 	      <ul class="nav navbar-nav">
 	        
 	        <li class="hover-ul"><a href="#Purpose">Purpose</a></li>
-			<li class="hover-ul"><a href="javascript:void(0)">Events</a></li>					
+			<li class="hover-ul"><a href="javascript:void(0)">Requests</a></li>					
 	      </ul>
 
 	      <ul class="nav navbar-nav navbar-right">
-	        <li class="hover-ul"><a href="logout"><img src="<%=session.getAttribute("avatar") %>" > <b>Logout</b></a></li>
+	      	<li class="hover-ul"><a href="volunteer.jsp"><span><%=session.getAttribute("email") %></span></a></li>
+	        <li class="hover-ul"><a href="logout"> <b>Logout</b></a></li>
 	      </ul>
 	    </div>
 	  </div>
