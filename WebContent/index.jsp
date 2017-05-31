@@ -14,7 +14,9 @@
 <!-- Navbar start -->
 <% if(session.getAttribute("flag")==null) { %>
 <%@ include file="static_resources/navbar.html" %>
-<% } else { %>
+
+<% } 
+if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals("volunteer")){ %>
 <%@ include file="navbar_vol.jsp" %>
 <% } %>
 

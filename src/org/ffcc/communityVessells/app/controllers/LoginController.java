@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 		try {
 			
 			auth=login.authenticateUser(email, password);
-			System.out.println(auth);
+			
 			if(auth==null) {
 				RequestDispatcher fail = request.getRequestDispatcher("/");
 				request.setAttribute("loginfail", "Your credentials are wrong. Please try again");
