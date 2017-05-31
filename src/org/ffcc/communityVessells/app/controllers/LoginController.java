@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
 			if(auth!=null && auth.equals("volunteer")){
 				HttpSession session = request.getSession();
 				session.setAttribute("usertype", auth);
-				
+				session.setAttribute("flag", true);
 
 				Volunteer vol = VolunteerDAO.findVolunteerByEmail(email);
 				
@@ -83,7 +83,8 @@ public class LoginController extends HttpServlet {
 			if(auth!=null && auth.equals("organization")){
 				HttpSession session = request.getSession();
 				session.setAttribute("usertype", auth);
-				
+				session.setAttribute("flag", true);
+
 				Organization org = OrganizationDAO.findOrganizationByEmail(email);
 				
 				session.setAttribute("email", org.getEmail());
@@ -91,7 +92,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("description", org.getDescription());
 				session.setAttribute("orgtype", org.getType());
 				session.setAttribute("avatar", org.getAvatar());
-				
+				System.out.println(session.getAttribute("email"));
 				RequestDispatcher success = request.getRequestDispatcher("/");
 				success.forward(request, response);
 			}
