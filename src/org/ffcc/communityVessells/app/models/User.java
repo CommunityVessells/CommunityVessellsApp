@@ -4,18 +4,13 @@
 
 package org.ffcc.communityVessells.app.models;
 
-import java.io.InputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 public class User {
 	
 	private String email;
 	private String password;
 	private String username;
 	private String avatar; //store image object as filepath saved.
-	
-	
+		
 	public User(String email, String password,String username) {
 		super();
 		this.email = email;
@@ -24,8 +19,7 @@ public class User {
 	}
 
 	public User(String email, String password, String username,String avatar) {
-		super();
-		
+		super();		
 		this.email = email;
 		this.password = password;
 		this.username = username;
@@ -57,9 +51,5 @@ public class User {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
-	}
-
-
-
-	
+	}	
 }
