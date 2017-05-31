@@ -38,7 +38,7 @@
    <div class="list-group-item">
 
     <div class="row-content">
-      <h4 class="list-group-item-heading anton"><small>My Requests</small> </h4>
+      <h4 class="list-group-item-heading anton"><small><%=session.getAttribute("name") %> Requests</small> </h4>
 
       
     </div>
@@ -51,7 +51,7 @@
 <%@ include file="static_resources/scriptIncludes.html" %>
 
 <%@ include file="static_resources/initScript.html" %>
-<%@ include file="static_resources/scrollspyScript.html" %>
+
 <%@ include file="static_resources/animateScript.html" %>
 </body>
 </html>

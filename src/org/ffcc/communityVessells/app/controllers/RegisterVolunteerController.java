@@ -59,9 +59,9 @@ public class RegisterVolunteerController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//Upload image using MultipartConfig and Servlet Api 3.0
+				
+		String destinationRealPath="C:/Users/user/eclipseWorkspace/CommunityVessellsApp/WebContent/Images/UserImages";
 		
-		ServletContext app = request.getServletContext();
-		String destinationRealPath=app.getRealPath("/Images/UserImages");
 		//read file name and content from form
 		Part filePart = request.getPart("file");
 		String avatarPath= null;
@@ -80,7 +80,8 @@ public class RegisterVolunteerController extends HttpServlet {
 				error.forward(request, response);
 			}
 			
-			avatarPath= avatar.getPath();
+			avatarPath= "/Images/UserImages/"+avatar.getName();
+			
 		}
 		String username = request.getParameter("username");
 		String firstname = request.getParameter("firstname");

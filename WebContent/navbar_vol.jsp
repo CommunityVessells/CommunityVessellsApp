@@ -11,7 +11,7 @@
 	    <div class="navbar-collapse collapse navbar-inverse-collapse">
 	      <ul class="nav navbar-nav">
 	        
-	        <li class="hover-ul"><a href="#Purpose">Purpose</a></li>
+	        <li class="hover-ul"><a href="/CommunityVessellsApp#Purpose">Purpose</a></li>
 			<li class="hover-ul"><a href="javascript:void(0)">Requests</a></li>					
 	      </ul>
 

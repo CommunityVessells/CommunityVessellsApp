@@ -53,7 +53,7 @@
 <%@ include file="static_resources/scriptIncludes.html" %>
 
 <%@ include file="static_resources/initScript.html" %>
-<%@ include file="static_resources/scrollspyScript.html" %>
+
 <%@ include file="static_resources/animateScript.html" %>
 </body>
 </html>

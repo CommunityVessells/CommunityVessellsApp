@@ -52,9 +52,9 @@
 						<div class="col-md-10">
 							<select name="orgType" id="selectoptions" class="form-control">
 								
-								<option value="ngo">Non Government Organization - NGO</option>
-								<option value="ent">Enterprise</option>
-								<option value="gov">Government Organization</option>
+								<option>Non Government Organization - NGO</option>
+								<option>Enterprise</option>
+								<option>Government Organization</option>
 							</select>
 							
 						</div>

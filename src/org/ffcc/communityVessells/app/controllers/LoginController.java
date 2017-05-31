@@ -92,7 +92,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("description", org.getDescription());
 				session.setAttribute("orgtype", org.getType());
 				session.setAttribute("avatar", org.getAvatar());
-				System.out.println(session.getAttribute("email"));
+				
 				RequestDispatcher success = request.getRequestDispatcher("/");
 				success.forward(request, response);
 			}
