@@ -42,18 +42,25 @@
 						<div class="form-group"  >
 							<label for="inputDescription" class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
-  								<textarea name="description" class="form-control" rows="5" id="inputDescription" placeholder="Description"></textarea>
+  								<textarea name="description" class="form-control" rows="5" id="inputDescription" placeholder="Description" maxlength="255"></textarea>
 							</div>
 						</div>
+
+					<div class="form-group">
+						<label for="selectoptions" class="col-md-2 control-label">Select Organization Type<span class="caret"></span></label>
 						
-						<div class="form-group"  >
-							<label for="inputLastname" class="col-sm-2 control-label">Last Name</label>
-							<div class="col-sm-10">
-								<input type="text" name="type" class="form-control" id="inputLastname" placeholder="Last Name">
-							</div>
+						<div class="col-md-10">
+							<select id="selectoptions" class="form-control">
+								
+								<option value="ngo">Non Government Organization - NGO</option>
+								<option value="ent">Enterprise</option>
+								<option value="gov">Government Organization</option>
+							</select>
+							
 						</div>
-						
-						<div class="form-group">
+					</div>
+
+					<div class="form-group">
       						<label for="inputFile" class="col-md-2 control-label">Upload Avatar Image</label>
 							<div class="col-md-10">
         						<input readonly="" class="form-control" placeholder="Browse..." type="text">        						

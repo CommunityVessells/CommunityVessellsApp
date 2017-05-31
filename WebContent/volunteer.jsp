@@ -59,5 +59,5 @@
 </html>
 <% } %>
 <% if(session.getAttribute("usertype")==null){ %>
-<<jsp:forward page="/"></jsp:forward>
+<jsp:forward page="/"></jsp:forward>
 <% } %>
