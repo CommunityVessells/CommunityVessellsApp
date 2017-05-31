@@ -1,6 +1,8 @@
 package org.ffcc.communityVessells.app.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ffcc.communityVessells.app.dao.LoginDAO;
+import org.ffcc.communityVessells.app.dao.VolunteerDAO;
+import org.ffcc.communityVessells.app.models.Volunteer;
 
 /**
  * Servlet implementation class LoginController
@@ -40,13 +44,45 @@ public class LoginController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
+		
 		
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
+		String auth;
 		LoginDAO login = new LoginDAO();
+		
+		
 		try {
-			System.out.println(login.authenticateUser(email, password));
+			
+			auth=login.authenticateUser(email, password);
+			System.out.println(auth);
+			if(auth==null) {
+				RequestDispatcher fail = request.getRequestDispatcher("/");
+				request.setAttribute("loginfail", "Your credentials are wrong. Please try again");
+				
+				fail.forward(request, response);
+			}
+			if(auth!=null && auth.equals("volunteer")){
+				HttpSession session = request.getSession();
+				session.setAttribute("usertype", auth);
+				session.setAttribute("flag",true);
+
+				Volunteer vol = VolunteerDAO.findVolunteerByEmail(email);
+				
+				session.setAttribute("email", vol.getEmail());
+				session.setAttribute("username",vol.getUsername());
+				session.setAttribute("firstname", vol.getFirstName());
+				session.setAttribute("lastname", vol.getLastName());
+				session.setAttribute("avatar", vol.getAvatar());
+				
+				RequestDispatcher success = request.getRequestDispatcher("/");
+				success.forward(request, response);
+			}
+			if(auth!=null && auth.equals("organization")){
+				HttpSession session = request.getSession();
+				session.setAttribute("usertype", auth);
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

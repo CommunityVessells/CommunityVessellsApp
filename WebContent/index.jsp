@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page errorPage="error.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="static_resources/head.html" %>
@@ -12,7 +12,13 @@
 <%@ include file="static_resources/loginModal.html" %>
 
 <!-- Navbar start -->
+<% if(session.getAttribute("flag")==null) { %>
 <%@ include file="static_resources/navbar.html" %>
+<% } else { %>
+<%@ include file="navbar_vol.jsp" %>
+<% } %>
+
+
 <!-- Navbar end-->
 
 <div class="container-fluid">
@@ -45,6 +51,30 @@
    					<p class="text-center text-danger"><%=(String)request.getAttribute("errormessage") %></p>
 					<div class="text-center">
 					<button class="btn btn-danger btn-raised text-center"  type="button" data-toggle="modal" data-target="#signUpModal"><b>TRY AGAIN</b></button>
+					</div>
+  				</div>
+			</div>
+				
+				
+			
+
+			
+		<%  } 
+		
+				
+		
+		    if(request.getAttribute("loginfail") != null) {
+		%>
+
+			
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+    				<h3 class="panel-title text-center" id="panelTitle">Login Fail!</h3>
+  				</div>
+  				<div class="panel-body">
+   					<p class="text-center text-danger"><%=(String)request.getAttribute("loginfail") %></p>
+					<div class="text-center">
+					<button class="btn btn-danger btn-raised text-center"  type="button" data-toggle="modal" data-target="#loginModal"><b>TRY AGAIN</b></button>
 					</div>
   				</div>
 			</div>

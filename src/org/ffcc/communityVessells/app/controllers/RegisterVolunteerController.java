@@ -62,6 +62,7 @@ public class RegisterVolunteerController extends HttpServlet {
 		
 		ServletContext app = request.getServletContext();
 		String destinationRealPath=app.getRealPath("/Images/UserImages");
+		//read file name and content from form
 		Part filePart = request.getPart("file");
 		String avatarPath= null;
 		if (filePart.getSize()>0) {	
@@ -71,9 +72,12 @@ public class RegisterVolunteerController extends HttpServlet {
 			File upload = new File(destinationRealPath);
 			File avatar = new File(upload, fileName);
 			try {
+				//store file into destination path
 				Files.copy(fileContent, avatar.toPath());
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("errormessage", session.getAttribute("email")+" could not be registered.Please try again.");
+				RequestDispatcher error = request.getRequestDispatcher("/"); 
+				error.forward(request, response);
 			}
 			
 			avatarPath= avatar.getPath();
@@ -84,12 +88,14 @@ public class RegisterVolunteerController extends HttpServlet {
 
 		VolunteerDAO volToDb = new VolunteerDAO();
 		Volunteer createVol = new Volunteer((String)session.getAttribute("email"),(String)session.getAttribute("hash") , username, avatarPath);
-		
+		//optional could use overloaded constructor
 		createVol.setFirstName(firstname);
 		createVol.setLastName(lastname);
+		//send messages to alert on homepage and redirect.
 		try{
 			volToDb.saveVolunteer(createVol);
 			request.setAttribute("successmessage", session.getAttribute("email")+" "+username+" has been successfully registered");
+			
 			RequestDispatcher success = request.getRequestDispatcher("/"); 
 			success.forward(request, response);
 		}

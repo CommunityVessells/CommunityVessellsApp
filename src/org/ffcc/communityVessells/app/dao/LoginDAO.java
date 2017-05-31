@@ -13,7 +13,7 @@ public class LoginDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean authenticateUser(String email,String password) throws Exception{
+	public String authenticateUser(String email,String password) throws Exception{
 		 Connection con = null;
 		 String sqlquery = "SELECT * FROM volunteer WHERE email=?;";		 
 		 DB db = new DB();
@@ -31,7 +31,7 @@ public class LoginDAO {
 					Volunteer checkVol = new Volunteer(rsVol.getString("email"),rsVol.getString("password"),rsVol.getString("username"),rsVol.getString("avatar"),rsVol.getInt("userID"),rsVol.getString("firstName"),rsVol.getString("lastName"));
 					type = "volunteer";
 					//check password match
-					return EncryptMD5.authenticateUser(password, checkVol.getPassword());
+					if (EncryptMD5.authenticateUser(password, checkVol.getPassword())) return type;
 				}
 				selectstVol.close();
 				//Search in orgs
@@ -45,7 +45,7 @@ public class LoginDAO {
 					Volunteer checkOrg = new Volunteer(rsOrg.getString("email"),rsOrg.getString("password"),rsOrg.getString("username"),rsOrg.getString("avatar"),rsOrg.getInt("userID"),rsOrg.getString("firstName"),rsOrg.getString("lastName"));
 					type = "organization";
 					//check password match
-					return EncryptMD5.authenticateUser(password, checkOrg.getPassword());
+					if (EncryptMD5.authenticateUser(password, checkVol.getPassword())) return type;
 				}
 				selectstOrg.close();
 				*/
@@ -61,6 +61,6 @@ public class LoginDAO {
 				}
 				
 		 	}
-		 return false;
+		 return null;
 	}
 }
