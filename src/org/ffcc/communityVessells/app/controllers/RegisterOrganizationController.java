@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import org.ffcc.communityVessells.app.models.Organization;
  * Servlet implementation class RegisterOrganizationController
  */
 @WebServlet("/registerorganization")
+@MultipartConfig
 public class RegisterOrganizationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -79,7 +81,7 @@ public class RegisterOrganizationController extends HttpServlet {
 		}
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
-		String type = request.getParameter("type");
+		String type = request.getParameter("orgType");
 
 		OrganizationDAO orgToDb = new OrganizationDAO();
 		Organization createOrg = new Organization((String)session.getAttribute("email"),(String)session.getAttribute("hash") , name, avatarPath);

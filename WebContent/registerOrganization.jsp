@@ -50,7 +50,7 @@
 						<label for="selectoptions" class="col-md-2 control-label">Select Organization Type<span class="caret"></span></label>
 						
 						<div class="col-md-10">
-							<select id="selectoptions" class="form-control">
+							<select name="orgType" id="selectoptions" class="form-control">
 								
 								<option value="ngo">Non Government Organization - NGO</option>
 								<option value="ent">Enterprise</option>
