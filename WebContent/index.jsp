@@ -21,7 +21,7 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 <% } %>
 
 <% if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals("organization")){ %>
-<%@ include file="navbar_vol.jsp" %>
+<%@ include file="navbar_org.jsp" %>
 <% } %>
 
 

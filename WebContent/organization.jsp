@@ -8,7 +8,7 @@
 
 <body id="comVessells" data-spy="scroll" data-target=".navbar" data-offset="60">
 <%@ include file="static_resources/loginModal.html" %>
-
+<%@ include file="navbar_org.jsp" %>
 <div class="container-fluid">
 
 <div class="list-group">
@@ -17,7 +17,7 @@
       <img class="img-thumbnail img-responsive" src="<%=session.getAttribute("avatar") %>" alt="avatar">
     </div>
     <div class="row-content">
-      <h4 class="list-group-item-heading anton text-center">Welcome <%=session.getAttribute("username") %></h4>
+      <h4 class="list-group-item-heading anton text-center">Welcome <%=session.getAttribute("name") %></h4>
 
       
     </div>
@@ -27,10 +27,10 @@
 
     <div class="row-content">
       <h4 class="list-group-item-heading anton"><small>Organization Details</small> </h4>
-		<p class="col-sm-offset-1"><b>Username: </b> <%=session.getAttribute("username") %></p>
+		<p class="col-sm-offset-1"><b>Name: </b> <%=session.getAttribute("name") %></p>
 		<p class="col-sm-offset-1"><b>Email: </b> <%=session.getAttribute("email") %></p>
-		<p class="col-sm-offset-1"><b>First Name: </b> <%=session.getAttribute("firstname") %></p>
-		<p class="col-sm-offset-1"><b>Last Name: </b> <%=session.getAttribute("lastname") %></p>
+		<p class="col-sm-offset-1"><b>Description: </b> <%=session.getAttribute("description") %></p>
+		<p class="col-sm-offset-1"><b>Type: </b> <%=session.getAttribute("orgtype") %></p>
       
     </div>
   </div>
