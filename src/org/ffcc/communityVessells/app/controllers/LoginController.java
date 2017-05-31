@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ffcc.communityVessells.app.dao.LoginDAO;
+import org.ffcc.communityVessells.app.dao.OrganizationDAO;
 import org.ffcc.communityVessells.app.dao.VolunteerDAO;
+import org.ffcc.communityVessells.app.models.Organization;
 import org.ffcc.communityVessells.app.models.Volunteer;
 
 /**
@@ -65,7 +67,7 @@ public class LoginController extends HttpServlet {
 			if(auth!=null && auth.equals("volunteer")){
 				HttpSession session = request.getSession();
 				session.setAttribute("usertype", auth);
-				session.setAttribute("flag",true);
+				
 
 				Volunteer vol = VolunteerDAO.findVolunteerByEmail(email);
 				
@@ -81,6 +83,17 @@ public class LoginController extends HttpServlet {
 			if(auth!=null && auth.equals("organization")){
 				HttpSession session = request.getSession();
 				session.setAttribute("usertype", auth);
+				
+				Organization org = OrganizationDAO.findOrganizationByEmail(email);
+				
+				session.setAttribute("email", org.getEmail());
+				session.setAttribute("name",org.getUsername());
+				session.setAttribute("description", org.getDescription());
+				session.setAttribute("orgtype", org.getType());
+				session.setAttribute("avatar", org.getAvatar());
+				
+				RequestDispatcher success = request.getRequestDispatcher("/");
+				success.forward(request, response);
 			}
 
 		} catch (Exception e) {

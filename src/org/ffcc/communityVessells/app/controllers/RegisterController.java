@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ffcc.communityVessells.app.dao.OrganizationDAO;
 import org.ffcc.communityVessells.app.dao.VolunteerDAO;
 import org.ffcc.communityVessells.app.encryption.EncryptMD5;
 
@@ -59,9 +60,15 @@ public class RegisterController extends HttpServlet {
 					errorDispatcher.forward(request, response); 
 		}
 		
-		//Check if email exists
+		//Check if email exists in volunteer or organization
 		try{
 			if(VolunteerDAO.findVolunteerByEmail(email)!=null) {
+				RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
+				request.setAttribute("errormessage", "This e-mail address already exists.");
+			
+				errorDispatcher.forward(request, response); 
+			}
+			if(OrganizationDAO.findOrganizationByEmail(email)!=null) {
 				RequestDispatcher errorDispatcher = request.getRequestDispatcher("/");
 				request.setAttribute("errormessage", "This e-mail address already exists.");
 			

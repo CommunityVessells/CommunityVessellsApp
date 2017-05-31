@@ -20,6 +20,10 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 <%@ include file="navbar_vol.jsp" %>
 <% } %>
 
+<% if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals("organization")){ %>
+<%@ include file="navbar_vol.jsp" %>
+<% } %>
+
 
 <!-- Navbar end-->
 
