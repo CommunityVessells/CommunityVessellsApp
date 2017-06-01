@@ -85,7 +85,7 @@ public class RepositoryDAO {
 			}
 	 }
 	 
-	 public static Volunteer findVolunteerByEmail(String email) throws Exception{
+	 /*public static Volunteer findVolunteerByEmail(String email) throws Exception{
 		 Connection con = null;
 		 String sqlquery = "SELECT * FROM volunteer WHERE email=?;";
 		 DB db = new DB();
@@ -116,6 +116,6 @@ public class RepositoryDAO {
 	
 		 	}
 		 
-	 }
+	 }*/
 
 }

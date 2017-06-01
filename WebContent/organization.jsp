@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Organization" %>
+<%@ page import="org.ffcc.communityVessells.app.models.Repository" %>
+<%@ page import="org.ffcc.communityVessells.app.dao.RepositoryDAO" %>
+<%@ page import="java.util.LinkedList" %>
 <%@ page errorPage="error.jsp"%>
 <%
 	if (session.getAttribute("usertype") != null && session.getAttribute("usertype").equals("organization")) {
@@ -9,21 +12,21 @@
 <html lang="en">
 <%@ include file="static_resources/head.html"%>
 
-<body id="comVessells" data-spy="scroll" data-target=".navbar"
-	data-offset="60">
+<body id="comVessells" data-spy="scroll" data-target=".navbar"	data-offset="60">
+	<% Organization temp=(Organization)session.getAttribute("organization"); %>
 	<%@ include file="static_resources/loginModal.html"%>
 	<%@ include file="navbar_org.jsp"%>
 	<div class="container-fluid">
 
 		<%
-			if (request.getAttribute("successmessage") != null) {
+			if (session.getAttribute("successmessage") != null) {
 		%>
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title text-center" id="panelTitle">Success!</h3>
 			</div>
 			<div class="panel-body">
-				<p class="text-center text-success"><%=(String) request.getAttribute("successmessage")%></p>
+				<p class="text-center text-success"><%=(String) session.getAttribute("successmessage")%></p>
 
 			</div>
 		</div>
@@ -56,7 +59,7 @@
 		<%
 			}
 		%>
-		<% Organization temp=(Organization)session.getAttribute("organization"); %>
+		
 		<div class="list-group">
 			<div class="list-group-item">
 				<div class="row-picture">
@@ -98,7 +101,23 @@
 					<h4 class="list-group-item-heading anton">
 						<small><%=temp.getUsername()%> Repositories</small>
 					</h4>
+					<%
+					RepositoryDAO repodao = new RepositoryDAO();
+					LinkedList<Repository> repos = repodao.getRepositories(); 
+					for(Repository r:repos){ %>
+						<h4 class="list-group-item-heading anton">
+						<small>Repository Details</small>
+					</h4>
+					<p><b>Title: </b><%=r.getTitle() %></p>
+					<p><b>Repository Type: </b><%=r.getRepoType() %></p>
+					<p><b>Total Capacity: </b><%=r.getCapacity() %></p>
+					<p><b>Available Products: </b><%=r.getAvailableProducts() %></p>
 					<div class="list-group-separator"></div>
+					<% }
+					%>
+					<div class="list-group-separator"></div>
+				</div>
+					<div class="row-content">
 					<h4 class="anton">
 						<small>Create New Repository</small>
 					</h4>

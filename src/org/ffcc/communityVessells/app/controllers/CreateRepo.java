@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.ffcc.communityVessells.app.dao.RepositoryDAO;
+import org.ffcc.communityVessells.app.models.Organization;
 import org.ffcc.communityVessells.app.models.Repository;
 
 /**
@@ -43,6 +46,8 @@ public class CreateRepo extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = request.getSession();
+		
 		String title = request.getParameter("title");		
 		String type = request.getParameter("repoType");
 		
@@ -61,9 +66,24 @@ public class CreateRepo extends HttpServlet {
 			request.setAttribute("errormessage", "Available Products cannot exceed Repository Capacity");
 			error.forward(request, response);
 		}
+		Organization org = (Organization) session.getAttribute("organization");
 		
-		//RepositoryDAO repoDAO = new RepositoryDAO();
-		//Repository newRepo = new Repository(title,type,capacity,availableProducts);
+		Repository newRepo = new Repository(title,type,capacity,availableProducts,org.getOrgID());
+		RepositoryDAO repoDAO = new RepositoryDAO();
+		try{
+			repoDAO.saveRepository(newRepo);
+			session.setAttribute("successmessage","Repository"+" "+title+" has been successfully saved");
+			
+			//RequestDispatcher success = request.getRequestDispatcher("/organization.jsp"); 
+			response.sendRedirect("organization.jsp");
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			request.setAttribute("errormessage", "Repository"+" "+title+" could not be saved.Please try again.");
+			RequestDispatcher error = request.getRequestDispatcher("/organization.jsp"); 
+			error.forward(request, response);
+		}
 	}
 
 }

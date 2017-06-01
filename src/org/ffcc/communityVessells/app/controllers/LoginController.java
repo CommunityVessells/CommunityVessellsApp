@@ -87,14 +87,15 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("flag", true);
 
 				Organization org = OrganizationDAO.findOrganizationByEmail(email);
-				/*
+
+				//use these if object reference doesn't work
 				session.setAttribute("orgID", org.getOrgID());
 				session.setAttribute("email", org.getEmail());
 				session.setAttribute("name",org.getUsername());
 				session.setAttribute("description", org.getDescription());
 				session.setAttribute("orgtype", org.getType());
 				session.setAttribute("avatar", org.getAvatar());
-				*/
+				
 				session.setAttribute("organization", org);
 				
 				RequestDispatcher success = request.getRequestDispatcher("/organization.jsp");

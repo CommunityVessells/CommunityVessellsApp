@@ -16,6 +16,14 @@ public class Repository {
 		this.availableProducts = availableProducts;
 	}
 	
+	public Repository(String title,String repoType, int capacity, int availableProducts,int orgID) {
+		this.title = title;
+		this.repoType = repoType;		
+		this.capacity = capacity;
+		this.availableProducts = availableProducts;
+		this.orgID = orgID;
+	}
+	
 	public Repository(int repoID, String title,String repoType, int capacity, int availableProducts) {
 		this.title = title;
 		this.repoType = repoType;
@@ -44,6 +52,8 @@ public class Repository {
 		return repoID;
 	}
 
+	
+
 	public void setRepoID(int repoID) {
 		this.repoID = repoID;
 	}
@@ -67,7 +77,7 @@ public class Repository {
 	public int getOrgID() {
 		return orgID;
 	}
-
+	
 	public void setOrgID(int orgID) {
 		this.orgID = orgID;
 	}
