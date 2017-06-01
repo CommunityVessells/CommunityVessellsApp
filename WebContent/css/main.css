@@ -11,7 +11,9 @@ body { padding-top: 5.7em !important; }
 
 .maintext{font-size: 1.4em !important;}
 
-
+.hide{
+	display: none !important; 
+}
 
 #lowercse {
   text-transform: capitalize;

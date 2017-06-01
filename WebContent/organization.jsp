@@ -34,8 +34,19 @@
       
     </div>
   </div>
+   <div class="list-group-separator"></div>
+   <div class="list-group-item">
+
+    <div class="row-content">
+      <h4 class="list-group-item-heading anton"><small><%=session.getAttribute("name") %> Repositories</small> </h4>
+  		<div class="list-group-separator"></div>
+  		<h4>Create New Repository</h4><button class="btn btn-default btn-raised" id="createRepo"><span class="glyphicon glyphicon-plus" id="symbol"></span></button>
+     <div class= "well hide" id="newForm">
+   <h2>hello</h2>
+   </div>
   <div class="list-group-separator"></div>
    <div class="list-group-item">
+
 
     <div class="row-content">
       <h4 class="list-group-item-heading anton"><small><%=session.getAttribute("name") %> Requests</small> </h4>
@@ -53,5 +64,7 @@
 <%@ include file="static_resources/initScript.html" %>
 
 <%@ include file="static_resources/animateScript.html" %>
+
+<%@ include file="static_resources/onclickCreateScript.html" %>
 </body>
 </html>

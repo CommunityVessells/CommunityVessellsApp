@@ -1,0 +1,20 @@
+<script type="text/javascript">
+
+
+$(document).ready(		
+    function(){
+        $("#createRepo").click(function () {
+        	if($("#newForm").hasClass("hide")){
+            	$("#newForm").show("slow");
+        	 	$("#newForm").removeClass("hide");
+            	$("#symbol").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+        	}
+        	else {
+        		$("#newForm").hide("slow");
+        	 	$("#newForm").addClass("hide");
+            	$("#symbol").addClass("glyphicon-plus").removeClass("glyphicon-minus");
+        	}
+        });
+
+    });
+</script>

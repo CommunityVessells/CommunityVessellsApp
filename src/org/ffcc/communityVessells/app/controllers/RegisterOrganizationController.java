@@ -77,7 +77,7 @@ public class RegisterOrganizationController extends HttpServlet {
 				error.forward(request, response);
 			}
 			
-			avatarPath= "/Images/UserImages/"+avatar.getName();
+			avatarPath= "/CommunityVessellsApp/Images/UserImages/"+avatar.getName();
 		}
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
