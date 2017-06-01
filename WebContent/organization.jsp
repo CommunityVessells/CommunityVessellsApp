@@ -41,9 +41,10 @@
       <h4 class="list-group-item-heading anton"><small><%=session.getAttribute("name") %> Repositories</small> </h4>
   		<div class="list-group-separator"></div>
   		<h4>Create New Repository</h4><button class="btn btn-default btn-raised" id="createRepo"><span class="glyphicon glyphicon-plus" id="symbol"></span></button>
+			
      <div class= "well hide" id="newForm">
-   <h2>hello</h2>
-   </div>
+   		<%@ include file="static_resources/createRepoForm.html" %>
+   	</div>
   <div class="list-group-separator"></div>
    <div class="list-group-item">
 
@@ -55,7 +56,9 @@
     </div>
   </div>
   </div>
+  </div>
   
+</div>
 </div>
 <%@ include file="static_resources/footer.html" %>
 
