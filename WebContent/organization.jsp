@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp" %>
-
+<% if(session.getAttribute("usertype")!=null && session.getAttribute("usertype").equals("organization")) { %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="static_resources/head.html" %>
@@ -92,3 +92,7 @@
 <%@ include file="static_resources/onclickCreateScript.html" %>
 </body>
 </html>
+<% } %>
+<% if(session.getAttribute("usertype")==null){ %>
+<jsp:forward page="/"></jsp:forward>
+<% } %>
