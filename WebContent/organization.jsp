@@ -34,6 +34,7 @@
 
 		<%
 			}
+		session.removeAttribute("successmessage");
 		%>
 
 
@@ -77,7 +78,7 @@
 
 				<div class="row-content">
 					<h4 class="list-group-item-heading anton">
-						<small>Organization Details</small>
+						<small class="text-accent-color">Organization Details</small>
 					</h4>
 					<p class="col-sm-offset-1">
 						<b>Name: </b>
@@ -98,24 +99,35 @@
 			<div class="list-group-item">
 
 				<div class="row-content">
+				
 					<h4 class="list-group-item-heading anton">
-						<small><%=temp.getUsername()%> Repositories</small>
+						<small class="text-accent-color"><%=temp.getUsername()%> Repositories</small>
 					</h4>
 					<%
 					RepositoryDAO repodao = new RepositoryDAO();
 					LinkedList<Repository> repos = repodao.getRepositories(); 
 					for(Repository r:repos){ %>
+					<div class="well col-sm-4 tabs">
 						<h4 class="list-group-item-heading anton">
-						<small>Repository Details</small>
+						<small>Repository <span class="lobster text-info"> <%=r.getTitle() %> </span> Details</small>
 					</h4>
 					<p><b>Title: </b><%=r.getTitle() %></p>
 					<p><b>Repository Type: </b><%=r.getRepoType() %></p>
 					<p><b>Total Capacity: </b><%=r.getCapacity() %></p>
 					<p><b>Available Products: </b><%=r.getAvailableProducts() %></p>
-					<div class="list-group-separator"></div>
+					<button class="btn btn-default btn-raised light-primary-color updateRepo">
+						<b>Update </b><span class="glyphicon glyphicon-plus" id="symbolupdate"> </span>
+					</button>
+
+					<div class="hide" id="repoForm">
+						<%@ include file="static_resources/createRepoForm.html"%>
+					</div>
+					</div>
+
 					<% }
 					%>
-					<div class="list-group-separator"></div>
+					
+					<div class="list-group-separator"></div> 
 				</div>
 					<div class="row-content">
 					<h4 class="anton">

@@ -1,4 +1,7 @@
-body { padding-top: 5.7em !important; }
+body { 
+	padding-top: 5.7em !important; 
+	padding-bottom: 5.7em !important;
+	}
 .hover-ul:hover{
   background-color: #78909c;
 }
@@ -8,7 +11,9 @@ body { padding-top: 5.7em !important; }
     padding-bottom: 2%;
 
 }
-
+.tabs {
+	margin-left: 2em !important;
+}
 .maintext{font-size: 1.4em !important;}
 
 .hide{
@@ -39,6 +44,7 @@ body { padding-top: 5.7em !important; }
 }
 #footer {
   padding-top: 1em;
+  
 }
 
 
