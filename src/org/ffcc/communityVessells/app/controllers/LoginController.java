@@ -77,7 +77,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("lastname", vol.getLastName());
 				session.setAttribute("avatar", vol.getAvatar());
 				
-				RequestDispatcher success = request.getRequestDispatcher("/");
+				RequestDispatcher success = request.getRequestDispatcher("/volunteer.jsp");
 				success.forward(request, response);
 			}
 			if(auth!=null && auth.equals("organization")){
@@ -93,7 +93,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("orgtype", org.getType());
 				session.setAttribute("avatar", org.getAvatar());
 				
-				RequestDispatcher success = request.getRequestDispatcher("/");
+				RequestDispatcher success = request.getRequestDispatcher("/organization.jsp");
 				success.forward(request, response);
 			}
 
