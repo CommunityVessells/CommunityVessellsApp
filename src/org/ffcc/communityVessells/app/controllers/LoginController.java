@@ -2,6 +2,7 @@ package org.ffcc.communityVessells.app.controllers;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -86,12 +87,15 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("flag", true);
 
 				Organization org = OrganizationDAO.findOrganizationByEmail(email);
-				
+				/*
+				session.setAttribute("orgID", org.getOrgID());
 				session.setAttribute("email", org.getEmail());
 				session.setAttribute("name",org.getUsername());
 				session.setAttribute("description", org.getDescription());
 				session.setAttribute("orgtype", org.getType());
 				session.setAttribute("avatar", org.getAvatar());
+				*/
+				session.setAttribute("organization", org);
 				
 				RequestDispatcher success = request.getRequestDispatcher("/organization.jsp");
 				success.forward(request, response);

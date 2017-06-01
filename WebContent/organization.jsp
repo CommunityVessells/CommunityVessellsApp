@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Organization" %>
 <%@ page errorPage="error.jsp"%>
 <%
 	if (session.getAttribute("usertype") != null && session.getAttribute("usertype").equals("organization")) {
@@ -55,16 +56,15 @@
 		<%
 			}
 		%>
+		<% Organization temp=(Organization)session.getAttribute("organization"); %>
 		<div class="list-group">
 			<div class="list-group-item">
 				<div class="row-picture">
-					<img class="img-thumbnail img-responsive"
-						src="<%=session.getAttribute("avatar")%>" alt="avatar">
+					<img class="img-thumbnail img-responsive"	src="<%=temp.getAvatar() %>" alt="avatar">
 				</div>
 				<div class="row-content">
 					<h4 class="list-group-item-heading anton text-center">
-						Welcome
-						<%=session.getAttribute("name")%></h4>
+						Welcome <%=temp.getUsername()%></h4>
 
 
 				</div>
@@ -78,16 +78,16 @@
 					</h4>
 					<p class="col-sm-offset-1">
 						<b>Name: </b>
-						<%=session.getAttribute("name")%></p>
+						<%=temp.getUsername()%></p>
 					<p class="col-sm-offset-1">
 						<b>Email: </b>
-						<%=session.getAttribute("email")%></p>
+						<%=temp.getEmail()%></p>
 					<p class="col-sm-offset-1">
 						<b>Description: </b>
-						<%=session.getAttribute("description")%></p>
+						<%=temp.getDescription()%></p>
 					<p class="col-sm-offset-1">
 						<b>Type: </b>
-						<%=session.getAttribute("orgtype")%></p>
+						<%=temp.getType()%></p>
 
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 
 				<div class="row-content">
 					<h4 class="list-group-item-heading anton">
-						<small><%=session.getAttribute("name")%> Repositories</small>
+						<small><%=temp.getUsername()%> Repositories</small>
 					</h4>
 					<div class="list-group-separator"></div>
 					<h4 class="anton">
@@ -116,7 +116,7 @@
 
 						<div class="row-content">
 							<h4 class="list-group-item-heading anton">
-								<small><%=session.getAttribute("name")%> Requests</small>
+								<small><%=temp.getUsername()%> Requests</small>
 							</h4>
 
 

@@ -95,7 +95,7 @@ public class OrganizationDAO {
 				selectst.setString(1, email);
 				ResultSet rs=selectst.executeQuery();
 				if(rs.next()){
-					return new Organization(rs.getString("email"),rs.getString("password"),rs.getString("name"),rs.getString("avatar"),rs.getString("description"),rs.getString("type"));
+					return new Organization(rs.getString("email"),rs.getString("password"),rs.getString("name"),rs.getString("avatar"),rs.getInt("orgID"),rs.getString("description"),rs.getString("type"));
 				}
 				
 				selectst.close();
