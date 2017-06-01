@@ -11,6 +11,27 @@
 <%@ include file="navbar_org.jsp" %>
 <div class="container-fluid">
 
+
+
+		
+		<%    if(request.getAttribute("errormessage") != null) {
+		%>
+
+			
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+    				<h3 class="panel-title text-center" id="panelTitle">Create new Repository Failed!</h3>
+  				</div>
+  				<div class="panel-body">
+   					<p class="text-center text-danger"><%=(String)request.getAttribute("errormessage") %></p>
+  				</div>
+			</div>
+				
+				
+			
+
+			
+		<%  } %>
 <div class="list-group">
   <div class="list-group-item">
     <div class="row-picture">
@@ -40,7 +61,7 @@
     <div class="row-content">
       <h4 class="list-group-item-heading anton"><small><%=session.getAttribute("name") %> Repositories</small> </h4>
   		<div class="list-group-separator"></div>
-  		<h4>Create New Repository</h4><button class="btn btn-default btn-raised" id="createRepo"><span class="glyphicon glyphicon-plus" id="symbol"></span></button>
+  		<h4 class="anton"><small>Create New Repository</small></h4><button class="btn btn-default btn-raised light-primary-color" id="createRepo"><span class="glyphicon glyphicon-plus" id="symbol"></span></button>
 			
      <div class= "well hide" id="newForm">
    		<%@ include file="static_resources/createRepoForm.html" %>

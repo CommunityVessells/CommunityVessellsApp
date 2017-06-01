@@ -4,15 +4,32 @@ public class Repository {
 
 	private int repoID;
 	private String title;
+	private String repoType;
 	private int capacity;
 	private int availableProducts;
 	private int orgID;
+
+	public Repository(String title,String repoType, int capacity, int availableProducts) {
+		this.title = title;
+		this.repoType = repoType;		
+		this.capacity = capacity;
+		this.availableProducts = availableProducts;
+	}
 	
-	public Repository(int repoID,String title, int capacity, int availableProducts){
-		this.title=title;
-		this.repoID=repoID;
-		this.capacity=capacity;
-		this.availableProducts=availableProducts;
+	public Repository(int repoID, String title,String repoType, int capacity, int availableProducts) {
+		this.title = title;
+		this.repoType = repoType;
+		this.repoID = repoID;
+		this.capacity = capacity;
+		this.availableProducts = availableProducts;
+	}
+
+	public String getRepoType() {
+		return repoType;
+	}
+
+	public void setRepoType(String repoType) {
+		this.repoType = repoType;
 	}
 
 	public String getTitle() {
@@ -53,5 +70,5 @@ public class Repository {
 
 	public void setOrgID(int orgID) {
 		this.orgID = orgID;
-	}	
+	}
 }
