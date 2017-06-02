@@ -14,10 +14,10 @@ public class ProductDAO {
 	public ProductDAO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	 public void saveProduct(Product product) throws Exception{
 			Connection con = null;
-			String sqlcreate = "INSERT INTO product (capacity, availableProducts, orgID, title, repoType) VALUES (? , ? , ? , ? , ?);";
+			String sqlcreate = "INSERT INTO product (repoID, title, prodType, count, isPromised) VALUES (? , ? , ? , ? , ?);";
 			DB db = new DB();
 			
 			try{
@@ -26,11 +26,13 @@ public class ProductDAO {
 				
 				PreparedStatement insertst = con.prepareStatement(sqlcreate);
 				
-				insertst.setInt(1, repository.getCapacity());
-				insertst.setInt(2, repository.getAvailableProducts());
-				insertst.setInt(3, repository.getOrgID());
-				insertst.setString(4, repository.getTitle());
-				insertst.setString(5, repository.getRepoType());
+				insertst.setInt(1,product.getProdID());
+				insertst.setString(2, product.getTitle());
+				insertst.setString(3, product.getProdType());
+				insertst.setInt(4, product.getCount());
+				if(product.isPromised()){
+					insertst.setInt(5, 1);
+				}else insertst.setInt(5, 0);
 				
 				insertst.executeUpdate();
 				insertst.close();
@@ -39,7 +41,7 @@ public class ProductDAO {
 				e.printStackTrace();
 				//throw new Exception("Repository with ID: " + repository.getRepoID() + " already exists");
 			}catch (Exception e){
-				throw new Exception("An error occured while inserting repository to database: " + e.getMessage());
+				throw new Exception("An error occured while inserting product to database: " + e.getMessage());
 			}finally{
 				try{
 					db.close();
@@ -47,4 +49,5 @@ public class ProductDAO {
 					e.printStackTrace();
 				}
 			}
+	 }
 }
