@@ -14,6 +14,41 @@ public class ProductDAO {
 	public ProductDAO() {
 		// TODO Auto-generated constructor stub
 	}
+	public LinkedList<Product> getProducts(int repoID) throws Exception{
+		Connection con = null;
+		String sqlquery = "SELECT * FROM product WHERE repoID = ?;";
+		DB db = new DB();
+		
+		try{
+			db.open();
+			con = db.getConnection();
+			
+			PreparedStatement selectst = con.prepareStatement(sqlquery);
+			selectst.setInt(1, repoID);
+			ResultSet rs = selectst.executeQuery();
+		
+			LinkedList<Product> productList = new LinkedList<Product>();
+			while(rs.next()){
+				productList.add(new Product(rs.getInt("prodID"),rs.getString("title"), rs.getInt("repoID"), rs.getInt("count")));
+			}
+			rs.close();
+			selectst.close();
+			
+			return productList;
+		}
+		catch(SQLException sqlE){
+			throw new Exception("An error occured while getting repositories from database: " + sqlE.getMessage());
+		}
+		finally {
+			try{
+				db.close();
+
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	 }
 	
 	 public void saveProduct(Product product) throws Exception{
 			Connection con = null;
