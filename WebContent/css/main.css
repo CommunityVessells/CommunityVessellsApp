@@ -16,6 +16,11 @@ body {
 }
 .maintext{font-size: 1.4em !important;}
 
+.avatar{
+	width:200px !important;
+	height:auto !important;
+}
+
 .hide{
 	display: none !important; 
 }

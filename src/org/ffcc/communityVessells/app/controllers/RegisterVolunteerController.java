@@ -80,7 +80,7 @@ public class RegisterVolunteerController extends HttpServlet {
 				error.forward(request, response);
 			}
 			
-			avatarPath= "/CommunityVessellsApp/Images/UserImages/"+avatar.getName();
+			avatarPath= "Images/UserImages/"+avatar.getName();
 			
 		}
 		String username = request.getParameter("username");
