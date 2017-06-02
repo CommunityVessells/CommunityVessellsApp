@@ -12,7 +12,7 @@
 <html lang="en">
 <%@ include file="static_resources/head.html"%>
 
-<body id="comVessells" data-spy="scroll" data-target=".navbar"	data-offset="60">
+<body id="org" data-spy="scroll" data-target=".navbar"	data-offset="60">
 	<%
 		Organization temp = (Organization) session.getAttribute("organization");
 	%>
@@ -58,18 +58,20 @@
 
 
 
-</div>
+
 
 		<%
 			}
 		%>
 
 <!-- Alerts End -->
+
+
 <!-- Jumbotron -->
   <div class="jumbotron text-center light-primary-color">
 		<div class="container-fluid">
 			<div class="row main">
-		<div class="col-sm-2 col-md-2 pull-left"><a href="organization.jsp"><img class="img-responsive img-thumbnail avatar" src="<%=temp.getAvatar()%>" alt="avatar"></a></div>
+		<div class="col-sm-2 col-md-2 pull-left"><a href="organization.jsp"><img class="img-responsive img-thumbnail" src="<%=temp.getAvatar()%>" alt="avatar"></a></div>
 		<div class="col-sm-10 text-center">
     <h1 class="anton">Welcome <span class="text-primary-color"><%=temp.getUsername()%></span> </h1>
 
@@ -79,10 +81,90 @@
 </div>
 </div>
 
+<!--  Organization title -->
+<div class="row-content text-center">
+	<h3 class=""><small class="text-accent-color maintext" style="font-family:'Anton', sans-serif;">Organization Details</small></h3>
+	<p class="maintext"><b>Name: </b><%=temp.getUsername()%></p>
+	<p class="maintext"><b>Email: </b><%=temp.getEmail()%></p>
+	<p class="maintext"><b>Description: </b><%=temp.getDescription()%></p>
+	<p class="maintext"><b>Type: </b><%=temp.getType()%></p>
+</div>
+<hr class="divider-color">
 
 
+<!-- Repositories -->
+<div class="row-content text-center" id="Repositories">
+	<h3 class="anton"><small class="text-accent-color"><%=temp.getUsername()%> Repositories</small></h3>
+
+<!-- Show All -->
+					<button class="btn btn-info" data-toggle="collapse"
+						data-target="#repos" id="showAll">
+						Show All <span class="glyphicon glyphicon-chevron-down" id="icon"></span>
+					</button>
+	<div class="collapse" id="repos">
+							<%
+							RepositoryDAO repodao = new RepositoryDAO();
+								LinkedList<Repository> repos = repodao.getRepositories();
+								for (Repository r : repos) {
+							%>
+							<div class="well">
+							<h4 class="list-group-item-heading anton">
+								<small>Repository <span class="lobster text-info">
+										<%=r.getTitle()%>
+								</span> Details
+								</small>
+							</h4>
+							<p>
+								<b>Title: </b><%=r.getTitle()%></p>
+							<p>
+								<b>Repository Type: </b><%=r.getRepoType()%></p>
+							<p>
+								<b>Total Capacity: </b><%=r.getCapacity()%></p>
+							<p>
+								<b>Available Products: </b><%=r.getAvailableProducts()%></p>
+							<button
+								class="btn btn-default btn-raised light-primary-color updateRepo">
+								<b>Edit </b><span class="glyphicon glyphicon-plus"
+									id="symbolupdate"> </span>
+							</button>
+							<button
+								class="btn btn-info btn-raised  updateRepo">
+								<b>Details </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</button>
 
 
+						</div>
+						
+						<%
+							}
+						%>
+						</div>
+						<!-- loop div end -->
+	</div>
+	<!-- Repositories end -->
+	<hr class="divider-color">
+	
+	<!-- Create new Repo start -->
+	<div class="row-content text-center" id="CreateNew">
+				<h4 class="anton">
+					<small class="text-accent-color">Create New Repository</small>
+				</h4>
+				<button class="btn btn-default btn-raised light-primary-color"
+					id="createRepo">
+					<span class="glyphicon glyphicon-plus" id="symbol"></span>
+				</button>
+				
+				<div class="well hide" id="newForm">
+					<%@ include file="static_resources/createRepoForm.html"%>
+				</div>
+	</div>
+	<!-- End Create New -->
+	
+	
+	<!-- Requests start -->
+	
+</div><!-- End container -->
 	<%@ include file="static_resources/footer.html"%>
 
 	<%@ include file="static_resources/scriptIncludes.html"%>
@@ -90,7 +172,7 @@
 	<%@ include file="static_resources/initScript.html"%>
 
 	<%@ include file="static_resources/animateScript.html"%>
-
+	<%@ include file="static_resources/scrollspyScriptOrg.html" %>
 	<%@ include file="static_resources/onclickCreateScript.html"%>
 </body>
 </html>

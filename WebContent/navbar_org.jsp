@@ -11,8 +11,11 @@
 	    <div class="navbar-collapse collapse navbar-inverse-collapse">
 	      <ul class="nav navbar-nav">
 	        
-	        <li class="hover-ul"><a href="/CommunityVessellsApp#Purpose">Purpose</a></li>
-			<li class="hover-ul"><a href="javascript:void(0)">Requests</a></li>					
+	        <li class="hover-ul"><a href="#Repositories">Repositories</a></li>
+	        <li class="hover-ul"><a href="#CreateNew">Create New Repository</a></li>
+			<li class="hover-ul"><a href="#Requests)">Requests</a></li>
+			<li class="hover-ul"><a href="#Issue)">Issue New Request</a></li>
+								
 	      </ul>
 
 	      <ul class="nav navbar-nav navbar-right">

@@ -19,3 +19,21 @@ $(document).ready(
     });
 
 </script>
+
+<script type="text/javascript">
+
+
+$(document).ready(		
+    function(){
+        $("#showAll").click(function () {
+        	if($("#icon").hasClass("glyphicon-chevron-down")){
+            	$("#icon").addClass("glyphicon-chevron-up").removeClass("glyphicon-chevron-down");
+        	}
+        	else {
+        		$("#icon").addClass("glyphicon-chevron-down").removeClass("glyphicon-chevron-up");
+        	}
+        });
+
+    });
+
+</script>
