@@ -37,7 +37,7 @@ public class ProductDAO {
 			return productList;
 		}
 		catch(SQLException sqlE){
-			throw new Exception("An error occured while getting repositories from database: " + sqlE.getMessage());
+			throw new Exception("An error occured while getting products from database: " + sqlE.getMessage());
 		}
 		finally {
 			try{
@@ -74,7 +74,6 @@ public class ProductDAO {
 				
 			}catch (SQLException e) {
 				e.printStackTrace();
-				//throw new Exception("Repository with ID: " + repository.getRepoID() + " already exists");
 			}catch (Exception e){
 				throw new Exception("An error occured while inserting product to database: " + e.getMessage());
 			}finally{
@@ -84,5 +83,114 @@ public class ProductDAO {
 					e.printStackTrace();
 				}
 			}
+	 }
+	 
+	 public void setProductTypeFood(Product product,Date expire) throws Exception{
+			Connection con = null;
+			product.setProdFood(expire);
+			String sqlcreate = "UPDATE product SET (prodType, expire, size, condition) VALUES (? , ? , ? , ? ) WHERE prodID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement updatest = con.prepareStatement(sqlcreate);
+				
+				updatest.setString(1,product.getProdType());
+				updatest.setDate(2, product.getExpire());
+				updatest.setString(3, product.getSize());
+				updatest.setString(4, product.getCondition());
+				
+				updatest.setInt(5, product.getProdID());
+				
+				updatest.executeUpdate();
+				updatest.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while updating product in database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+	 }
+	 
+	 public void setProductTypePharm(Product product,Date expire) throws Exception{
+			Connection con = null;
+			product.setProdPharm(expire);
+			String sqlcreate = "UPDATE product SET (prodType, expire, size, condition) VALUES (? , ? , ? , ? ) WHERE prodID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement updatest = con.prepareStatement(sqlcreate);
+				
+				updatest.setString(1,product.getProdType());
+				updatest.setDate(2, product.getExpire());
+				updatest.setString(3, product.getSize());
+				updatest.setString(4, product.getCondition());
+				
+				updatest.setInt(5, product.getProdID());
+				
+				updatest.executeUpdate();
+				updatest.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while updating product in database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+	 }
+	 
+	 public void setProductTypeClothing(Product product,String condition,String size) throws Exception{
+			Connection con = null;
+			product.setProdClothing(condition, size);
+			String sqlcreate = "UPDATE product SET (prodType, expire, size, condition) VALUES (? , ? , ? , ? ) WHERE prodID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement updatest = con.prepareStatement(sqlcreate);
+				
+				updatest.setString(1,product.getProdType());
+				updatest.setDate(2, product.getExpire());
+				updatest.setString(3, product.getSize());
+				updatest.setString(4, product.getCondition());
+				
+				updatest.setInt(5, product.getProdID());
+				
+				updatest.executeUpdate();
+				updatest.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while updating product in database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+	 }
+	 
+	 public void setPromised(Product product) throws Exception {
+		 
 	 }
 }

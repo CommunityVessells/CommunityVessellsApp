@@ -1,6 +1,6 @@
 package org.ffcc.communityVessells.app.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PharmProduct extends Product{
 	private Date expire;
