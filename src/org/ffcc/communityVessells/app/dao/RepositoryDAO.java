@@ -32,7 +32,7 @@ public class RepositoryDAO {
 		
 			LinkedList<Repository> repositoryList = new LinkedList<Repository>();
 			while(rs.next()){
-				repositoryList.add(new Repository(rs.getString("title"),rs.getString("repoType"),rs.getInt("capacity"),rs.getInt("availableProducts")));
+				repositoryList.add(new Repository(rs.getInt("repoID"),rs.getString("title"),rs.getString("repoType"),rs.getInt("capacity"),rs.getInt("availableProducts"),rs.getInt("orgID")));
 			}
 			rs.close();
 			selectst.close();
@@ -142,6 +142,41 @@ public class RepositoryDAO {
 				
 				selectst.close();
 				return repositoryList;
+		 	}
+		 	catch(Exception e){
+		 		throw new Exception("An error occured while searching in database: "+e.getMessage());
+		 	}
+		 	finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();					
+				}
+	
+		 	}
+		 
+	 }
+	 
+	 public static Repository getRepositoryByID(int repoID) throws Exception{
+		 Connection con = null;
+		 String sqlquery = "SELECT * FROM repository WHERE repoID=?;";
+		 DB db = new DB();
+		 
+		 try{
+				db.open();
+				con = db.getConnection();
+				
+
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setInt(1, repoID);
+
+				ResultSet rs=selectst.executeQuery();
+				if(rs.next()){
+					return new Repository(rs.getInt("repoID"),rs.getString("title"),rs.getString("repoType"), rs.getInt("capacity"), rs.getInt("availableProducts"),rs.getInt("orgID"));
+				}
+				
+				selectst.close();
+				return null;
 		 	}
 		 	catch(Exception e){
 		 		throw new Exception("An error occured while searching in database: "+e.getMessage());

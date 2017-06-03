@@ -103,13 +103,14 @@
 					</button>
 	<div class="collapse" id="repos">
 							<%
-							RepositoryDAO repodao = new RepositoryDAO();
+								RepositoryDAO repodao = new RepositoryDAO();
 								LinkedList<Repository> repos = repodao.getRepositories();
+								int i=0;
 								for (Repository r : repos) {
 							%>
 							<div class="well">
 							<h4 class="list-group-item-heading anton">
-								<small>Repository <span class="lobster text-info">
+								<small>Repository <span class="text-info">
 										<%=r.getTitle()%>
 								</span> Details
 								</small>
@@ -127,12 +128,14 @@
 								<b>Edit </b><span class="glyphicon glyphicon-plus"
 									id="symbolupdate"> </span>
 							</button>
-							<button
-								class="btn btn-info btn-raised  updateRepo">
+							
+    
+							<%-- URI rewrite repoID --%>
+							<a class="btn btn-info btn-raised  updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getRepoID()))%>">
 								<b>Details </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
-							</button>
-
+							</a>
+							
 
 						</div>
 						
