@@ -118,6 +118,10 @@ public class Product {
 	public void setPromised() {
 		this.isPromised = true;
 	}
+	//this setter is special
+	public void setAvailable(){
+		this.isPromised = false;
+	}
 	
 	public Date getExpire() {
 		return expire;
