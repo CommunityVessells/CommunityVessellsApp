@@ -226,7 +226,7 @@ public class ProductDAO {
 	 public void setAvailable(Product product) throws Exception {
 			Connection con = null;
 			product.setAvailable();
-			String sqlupdate = "UPDATE product SET isPromised=?  WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET isPromised= ?  WHERE prodID = ?;";
 			DB db = new DB();
 			
 			try{

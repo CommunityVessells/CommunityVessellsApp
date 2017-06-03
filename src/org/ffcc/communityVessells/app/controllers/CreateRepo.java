@@ -52,23 +52,18 @@ public class CreateRepo extends HttpServlet {
 		String type = request.getParameter("repoType");
 		
 		//send error message if capacity | available are empty
-		if(request.getParameter("capacity").isEmpty() || request.getParameter("available").isEmpty() ){
+		if(request.getParameter("capacity").isEmpty() ){
 			RequestDispatcher error = request.getRequestDispatcher("/organization.jsp");
-			request.setAttribute("errormessage", "You have not set Capacity or Available Products");
+			request.setAttribute("errormessage", "You have not set Capacity");
 			error.forward(request, response);
 		}
 
-		int capacity = Integer.parseInt(request.getParameter("capacity"));
-		int availableProducts = Integer.parseInt(request.getParameter("available"));
+		int capacity = Integer.parseInt(request.getParameter("capacity"));		
 		//check if available>capacity
-		if(availableProducts>capacity){
-			RequestDispatcher error = request.getRequestDispatcher("/organization.jsp");
-			request.setAttribute("errormessage", "Available Products cannot exceed Repository Capacity");
-			error.forward(request, response);
-		}
+
 		Organization org = (Organization) session.getAttribute("organization");
 		
-		Repository newRepo = new Repository(title,type,capacity,availableProducts,org.getOrgID());
+		Repository newRepo = new Repository(title,type,capacity,0,org.getOrgID());
 		RepositoryDAO repoDAO = new RepositoryDAO();
 		try{
 			repoDAO.saveRepository(newRepo);

@@ -31,6 +31,15 @@ public class Repository {
 		this.capacity = capacity;
 		this.availableProducts = availableProducts;
 	}
+	
+	public Repository(int repoID, String title,String repoType, int capacity, int availableProducts,int orgID) {
+		this.title = title;
+		this.repoType = repoType;
+		this.repoID = repoID;
+		this.capacity = capacity;
+		this.availableProducts = availableProducts;
+		this.orgID=orgID;
+	}
 
 	public String getRepoType() {
 		return repoType;
