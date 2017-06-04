@@ -11,8 +11,8 @@ public class Product {
 	private Date dateStored;
 	private Date expire;//only for food or pharm types
 	private boolean isPromised=false;
-	private String size;//XL,L,M,S,XS or N/A
-	private String condition;//Mint,Near-Mint,Very-Good,Good,Poor,Fubar or N/A
+	private String size;//XL,L,M,S,XS or Null
+	private String condition;//Mint,Near-Mint,Very-Good,Good,Poor,Fubar or Null
 
 	public Product(int prodID, String title, int repoID, int count, Date dateStored) {
 		super();
@@ -56,8 +56,8 @@ public class Product {
 	public void setProdFood(Date expire){
 		this.prodType="food";
 		this.setExpire(expire);
-		this.setCondition("N/A");
-		this.setSize("N/A");
+		this.setCondition(null);
+		this.setSize(null);
 		
 	}
 
@@ -66,8 +66,8 @@ public class Product {
 	public void setProdPharm(Date expire){
 		this.prodType="pharm";
 		this.setExpire(expire);
-		this.setCondition("N/A");
-		this.setSize("N/A");
+		this.setCondition(null);
+		this.setSize(null);
 		
 	}
 	

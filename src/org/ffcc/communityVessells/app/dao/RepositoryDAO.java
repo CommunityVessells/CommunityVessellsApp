@@ -89,7 +89,7 @@ public class RepositoryDAO {
 	 public void updateRepository(Repository repository) throws Exception{
 			Connection con = null;
 			
-			String sqlupdate = "UPDATE repository SET capacity=?,availableProducts=?,title=?,repoType=? WHERE repoID=?";
+			String sqlupdate = "UPDATE repository SET capacity=?,availableProducts=?,title=?,repoType=? WHERE repoID=?;";
 			DB db = new DB();
 			
 			try{

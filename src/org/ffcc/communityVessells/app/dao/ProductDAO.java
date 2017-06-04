@@ -30,7 +30,7 @@ public class ProductDAO {
 		
 			LinkedList<Product> productList = new LinkedList<Product>();
 			while(rs.next()){
-				productList.add(new Product(rs.getInt("prodID"),rs.getString("title"), rs.getInt("repoID"), rs.getInt("count")));
+				productList.add(new Product(rs.getInt("productID"),rs.getString("title"), rs.getInt("repoID"), rs.getInt("count")));
 			}
 			rs.close();
 			selectst.close();
@@ -51,9 +51,11 @@ public class ProductDAO {
 		}
 	 }
 	
+
+	 
 	 public void saveProduct(Product product) throws Exception{
 			Connection con = null;
-			String sqlupdate = "INSERT INTO product (repoID, title, prodType, count, isPromised) VALUES (? , ? , ? , ? , ?);";
+			String sqlupdate = "INSERT INTO product (repoID, title, prodType, count, isPromised) VALUES (? , ? , ? , ? , ?);";			
 			DB db = new DB();
 			
 			try{
@@ -62,7 +64,7 @@ public class ProductDAO {
 				
 				PreparedStatement insertst = con.prepareStatement(sqlupdate);
 				
-				insertst.setInt(1,product.getProdID());
+				insertst.setInt(1,product.getRepoID());
 				insertst.setString(2, product.getTitle());
 				insertst.setString(3, product.getProdType());
 				insertst.setInt(4, product.getCount());
@@ -70,7 +72,9 @@ public class ProductDAO {
 					insertst.setInt(5, 1);
 				}else insertst.setInt(5, 0);
 				
+				
 				insertst.executeUpdate();
+				
 				insertst.close();
 				
 			}catch (SQLException e) {
@@ -89,7 +93,7 @@ public class ProductDAO {
 	 public void setProductTypeFood(Product product,Date expire) throws Exception{
 			Connection con = null;
 			product.setProdFood(expire);
-			String sqlupdate = "UPDATE product SET prodType=?, expire=?, size=?, condition=? WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET prodType=?,expire=? WHERE productID=?;";
 			DB db = new DB();
 			
 			try{
@@ -99,13 +103,14 @@ public class ProductDAO {
 				PreparedStatement updatest = con.prepareStatement(sqlupdate);
 				
 				updatest.setString(1,product.getProdType());
-				updatest.setDate(2, product.getExpire());
-				updatest.setString(3, product.getSize());
-				updatest.setString(4, product.getCondition());
+				updatest.setDate(2, product.getExpire());				
+				//updatest.setString(3, product.getSize());
+				//updatest.setString(3, product.getCondition());
 				
-				updatest.setInt(5, product.getProdID());
+				updatest.setInt(3, product.getProdID());
 				
 				updatest.executeUpdate();
+
 				updatest.close();
 				
 			}catch (SQLException e) {
@@ -124,7 +129,7 @@ public class ProductDAO {
 	 public void setProductTypePharm(Product product,Date expire) throws Exception{
 			Connection con = null;
 			product.setProdPharm(expire);
-			String sqlupdate = "UPDATE product SET prodType= ?, expire= ?, size= ?, condition= ?  WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET prodType=?,expire=? WHERE productID=?;";
 			DB db = new DB();
 			
 			try{
@@ -135,10 +140,10 @@ public class ProductDAO {
 				
 				updatest.setString(1,product.getProdType());
 				updatest.setDate(2, product.getExpire());
-				updatest.setString(3, product.getSize());
-				updatest.setString(4, product.getCondition());
+				//updatest.setString(3, product.getSize());
+				//updatest.setString(4, product.getCondition());
 				
-				updatest.setInt(5, product.getProdID());
+				updatest.setInt(3, product.getProdID());
 				
 				updatest.executeUpdate();
 				updatest.close();
@@ -159,7 +164,7 @@ public class ProductDAO {
 	 public void setProductTypeClothing(Product product,String condition,String size) throws Exception{
 			Connection con = null;
 			product.setProdClothing(condition, size);
-			String sqlupdate = "UPDATE product SET prodType=?, expire=?, size=?, condition=?  WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET prodType=?,size=?,condition=?  WHERE productID =?;";
 			DB db = new DB();
 			
 			try{
@@ -169,11 +174,11 @@ public class ProductDAO {
 				PreparedStatement updatest = con.prepareStatement(sqlupdate);
 				
 				updatest.setString(1,product.getProdType());
-				updatest.setDate(2, product.getExpire());
-				updatest.setString(3, product.getSize());
-				updatest.setString(4, product.getCondition());
+				//updatest.setDate(2, product.getExpire());
+				updatest.setString(2, product.getSize());
+				updatest.setString(3, product.getCondition());
 				
-				updatest.setInt(5, product.getProdID());
+				updatest.setInt(4, product.getProdID());
 				
 				updatest.executeUpdate();
 				updatest.close();
@@ -194,7 +199,7 @@ public class ProductDAO {
 	 public void setPromised(Product product) throws Exception {
 			Connection con = null;
 			product.setPromised();
-			String sqlupdate = "UPDATE product SET isPromised=?  WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET isPromised=?  WHERE productID = ?;";
 			DB db = new DB();
 			
 			try{
@@ -226,7 +231,7 @@ public class ProductDAO {
 	 public void setAvailable(Product product) throws Exception {
 			Connection con = null;
 			product.setAvailable();
-			String sqlupdate = "UPDATE product SET isPromised= ?  WHERE prodID = ?;";
+			String sqlupdate = "UPDATE product SET isPromised= ?  WHERE productID = ?;";
 			DB db = new DB();
 			
 			try{
