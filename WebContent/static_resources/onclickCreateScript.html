@@ -43,6 +43,24 @@ $(document).ready(
 
 $(document).ready(		
     function(){
+        $("#showAllProducts").click(function () {
+        	if($("#icon").hasClass("glyphicon-chevron-down")){
+            	$("#icon").addClass("glyphicon-chevron-up").removeClass("glyphicon-chevron-down");
+        	}
+        	else {
+        		$("#icon").addClass("glyphicon-chevron-down").removeClass("glyphicon-chevron-up");
+        	}
+        });
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+
+$(document).ready(		
+    function(){
         $("#createProd").click(function () {
         	if($("#newProd").hasClass("hide")){
             	$("#newProd").show("slow");

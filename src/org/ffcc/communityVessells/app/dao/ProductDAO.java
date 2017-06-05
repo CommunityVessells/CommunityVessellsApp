@@ -30,6 +30,7 @@ public class ProductDAO {
 		
 			LinkedList<Product> productList = new LinkedList<Product>();
 			while(rs.next()){
+				
 				productList.add(new Product(rs.getInt("productID"),rs.getString("title"), rs.getInt("repoID"), rs.getInt("count")));
 			}
 			rs.close();
@@ -164,7 +165,7 @@ public class ProductDAO {
 	 public void setProductTypeClothing(Product product,String condition,String size) throws Exception{
 			Connection con = null;
 			product.setProdClothing(condition, size);
-			String sqlupdate = "UPDATE product SET prodType=?,size=?,condition=?  WHERE productID =?;";
+			String sqlupdate = "UPDATE product SET prodType=?,size=?,clotheCond=?  WHERE productID =?;";
 			DB db = new DB();
 			
 			try{
@@ -174,7 +175,7 @@ public class ProductDAO {
 				PreparedStatement updatest = con.prepareStatement(sqlupdate);
 				
 				updatest.setString(1,product.getProdType());
-				//updatest.setDate(2, product.getExpire());
+				
 				updatest.setString(2, product.getSize());
 				updatest.setString(3, product.getCondition());
 				
@@ -259,4 +260,73 @@ public class ProductDAO {
 				}
 			}
 	 }
+	 
+	 public void setDateStored(Product product,Date dateStored) throws Exception {
+			Connection con = null;
+			product.setDateStored(dateStored);
+			String sqlupdate = "UPDATE product SET dateStored=?  WHERE productID =?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement updatest = con.prepareStatement(sqlupdate);
+				
+				updatest.setDate(1,product.getDateStored());
+				
+				updatest.setInt(2, product.getProdID());
+				
+				updatest.executeUpdate();
+				updatest.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while updating product in database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+	 }
+	 
+	 public LinkedList<Product> getProductsAllFields(int repoID) throws Exception{
+			Connection con = null;
+			String sqlquery = "SELECT * FROM product WHERE repoID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setInt(1, repoID);
+				ResultSet rs = selectst.executeQuery();
+			
+				LinkedList<Product> productList = new LinkedList<Product>();
+				while(rs.next()){
+					
+					productList.add(new Product(rs.getInt("productID"),rs.getString("title"),rs.getString("prodType"), rs.getInt("repoID"), rs.getInt("count"),rs.getDate("dateStored") ,rs.getDate("expire"),rs.getBoolean("isPromised"),rs.getString("size"),rs.getString("clotheCond")));
+				}
+				rs.close();
+				selectst.close();
+				
+				return productList;
+			}
+			catch(SQLException sqlE){
+				throw new Exception("An error occured while getting products from database: " + sqlE.getMessage());
+			}
+			finally {
+				try{
+					db.close();
+
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		 }
 }

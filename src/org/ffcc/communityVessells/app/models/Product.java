@@ -22,6 +22,20 @@ public class Product {
 		this.count = count;
 		this.dateStored = dateStored;
 	}
+	
+	public Product(int prodID, String title, String prodType,int repoID, int count, Date dateStored ,Date expired,boolean isPromised,String size,String condition) {
+		super();
+		this.prodID = prodID;
+		this.title = title;
+		this.prodType=prodType;
+		this.repoID = repoID;
+		this.count = count;
+		this.dateStored = dateStored;
+		this.isPromised=isPromised;
+		this.expire=expired;
+		this.size=size;
+		this.condition=condition;
+	}
 
 	public Product(int prodID, String title, int repoID, int count) {
 		super();
@@ -157,7 +171,7 @@ public class Product {
 	
 	//user inputs the threshold for acceptable clothes
 	public boolean isFubar(String threshold){
-		if(!this.getCondition().equals("N/A")){
+		if(this.getCondition()!=null){
 			return this.getCondition().equals(threshold);
 		}
 		

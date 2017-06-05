@@ -1,0 +1,13 @@
+<script>
+$(document).ready(function(){
+	$("#expirefilter").change(function(){	
+		$("#tableProd tr.danger").toggle();
+	});
+	$("#promisefilter").change(function(){	
+		$("#tableProd tr.warning").toggle();
+	});
+	$("#availablefilter").change(function(){	
+		$("#tableProd tr.success").toggle();
+	});
+}); 
+</script>
