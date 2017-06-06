@@ -94,7 +94,7 @@
 
 <!-- Repositories -->
 <div class="row-content text-center" id="Repositories">
-	<h3 class="anton"><small class="text-accent-color"><%=temp.getUsername()%> Repositories</small></h3>
+	<h3 class="anton"><small><%=temp.getUsername()%> Repositories</small></h3>
 
 <!-- Show All -->
 					<button class="btn btn-info" data-toggle="collapse"
@@ -151,7 +151,7 @@
 	<!-- Create new Repo start -->
 	<div class="row-content text-center" id="CreateNew">
 				<h4 class="anton">
-					<small class="text-accent-color">Create New Repository</small>
+					<small>Create New Repository</small>
 				</h4>
 				<button class="btn btn-default btn-raised light-primary-color"
 					id="createRepo">
