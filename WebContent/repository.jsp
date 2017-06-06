@@ -393,9 +393,61 @@
 				
 					
 			</div>
+			
+
 		</div>
 		<!-- end table -->
 		</div>
+		<hr class="divider-color">
+					<!-- Issue Request start -->
+					<div class="container-fluid text-center">
+			<div id="Issue">
+			<h4 class="anton">
+					<small>Issue New Request</small>
+				</h4>
+				<button class="btn btn-default btn-raised light-primary-color"
+					id="createRequest">
+					<span class="glyphicon glyphicon-plus" id="symbolrequest"></span>
+				</button>
+			</div>
+			<div class="well hide" id="newRequest">
+	
+					<!--form start-->
+
+					<form class="form-horizontal" action="createrequest" method="post">
+						<fieldset>
+						
+						<div class="form-group">
+						
+							<label for="prodtitle" class="control-label col-md-2">Title  </label>
+							<div class="col-sm-10">
+								<input type="text" name="prodtitle" class="form-control" id="prodtitle" placeholder="Product Title">
+							</div>
+						</div>
+						
+						<div class="form-group">
+						
+							<label for="quantity" class="control-label col-md-2">Quantity </label>
+							<div class="col-sm-10">
+								<input type="number" name="quantity" min="1" class="form-control" id="quantity">
+							</div>
+						</div>
+						
+						
+						
+							
+          				<div class="form-group">	 
+						<div class="checkbox">
+          					<label>
+            					<input type="checkbox" id="promised" name="promised" value="promised"> Promised Product
+          					</label>
+						</div>
+						</div>
+						</fieldset>
+						</form>
+						</div>
+						</div>
+			<!-- Issue Request end -->
 	</div>
 		<%@ include file="static_resources/footer.html"%>
 

@@ -1,41 +1,39 @@
 package org.ffcc.communityVessells.app.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Request {
 
 	private int requestID;
-	private int counter;
 	private Date startdate;
 	private Date closedate;
-	private String region;
-	private int duration;
-	private int promises;
-	private int organID;
+	private String address;
+	private String avatar;
+	private boolean isFulfilled;
 	private int reposID;
-	
-	public Request(int requestID, int counter, Date startdate, String region, int duration){
-		this.requestID=requestID;
-		this.counter=counter;
-		this.startdate=startdate;		
-		this.region=region;
-		this.duration=duration;
-	}
 
-	public int getRequestID() {
-		return requestID;
-	}
-
-	public void setRequestID(int requestID) {
+	public Request(int requestID, Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
+			int reposID) {
+		super();
 		this.requestID = requestID;
+		this.startdate = startdate;
+		this.closedate = closedate;
+		this.address = address;
+		this.avatar = avatar;
+		this.isFulfilled = isFulfilled;
+		this.reposID = reposID;
 	}
-
-	public int getCounter() {
-		return counter;
-	}
-
-	public void setCounter(int counter) {
-		this.counter = counter;
+	
+	public Request(Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
+			int reposID) {
+		super();
+		
+		this.startdate = startdate;
+		this.closedate = closedate;
+		this.address = address;
+		this.avatar = avatar;
+		this.isFulfilled = isFulfilled;
+		this.reposID = reposID;
 	}
 
 	public Date getStartdate() {
@@ -54,36 +52,28 @@ public class Request {
 		this.closedate = closedate;
 	}
 
-	public String getRegion() {
-		return region;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setRegion(String region) {
-		this.region = region;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public int getDuration() {
-		return duration;
+	public String getAvatar() {
+		return avatar;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
-	public int getPromises() {
-		return promises;
+	public boolean isFulfilled() {
+		return isFulfilled;
 	}
 
-	public void setPromises(int promises) {
-		this.promises = promises;
-	}
-
-	public int getOrganID() {
-		return organID;
-	}
-
-	public void setOrganID(int organID) {
-		this.organID = organID;
+	public void setFulfilled() {
+		this.isFulfilled = true;
 	}
 
 	public int getReposID() {
@@ -92,5 +82,12 @@ public class Request {
 
 	public void setReposID(int reposID) {
 		this.reposID = reposID;
-	}	
+	}
+
+	public int getRequestID() {
+		return requestID;
+	}
+	
+	
+
 }

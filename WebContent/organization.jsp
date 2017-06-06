@@ -123,11 +123,11 @@
 								<b>Total Capacity: </b><%=r.getCapacity()%></p>
 							<p>
 								<b>Available Products: </b><%=r.getAvailableProducts()%></p>
-							<button
-								class="btn btn-default btn-raised light-primary-color updateRepo">
-								<b>Edit </b><span class="glyphicon glyphicon-plus"
+							<a
+								class="btn btn-default btn-raised light-primary-color updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getRepoID()))+"#Issue"%>">
+								<b>Issue Request</b><span class="glyphicon glyphicon-plus"
 									id="symbolupdate"> </span>
-							</button>
+							</a>
 							
     
 							<%-- URI rewrite repoID --%>

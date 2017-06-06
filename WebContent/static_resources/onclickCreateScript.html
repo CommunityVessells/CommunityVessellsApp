@@ -77,3 +77,25 @@ $(document).ready(
     });
 
 </script>
+
+<script type="text/javascript">
+
+
+$(document).ready(		
+    function(){
+        $("#createRequest").click(function () {
+        	if($("#newRequest").hasClass("hide")){
+            	$("#newRequest").show("slow");
+        	 	$("#newRequest").removeClass("hide");
+            	$("#symbolrequest").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+        	}
+        	else {
+        		$("#newRequest").hide("slow");
+        	 	$("#newRequest").addClass("hide");
+            	$("#symbolrequest").addClass("glyphicon-plus").removeClass("glyphicon-minus");
+        	}
+        });
+
+    });
+
+</script>
