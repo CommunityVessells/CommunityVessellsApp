@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Request {
 
 	private int requestID;
+	private String title;
 	private Date startdate;
 	private Date closedate;
 	private String address;
@@ -12,10 +13,11 @@ public class Request {
 	private boolean isFulfilled;
 	private int reposID;
 
-	public Request(int requestID, Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
+	public Request(int requestID, String title,Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
 			int reposID) {
 		super();
 		this.requestID = requestID;
+		this.title=title;
 		this.startdate = startdate;
 		this.closedate = closedate;
 		this.address = address;
@@ -24,16 +26,24 @@ public class Request {
 		this.reposID = reposID;
 	}
 	
-	public Request(Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
+	public Request(String title,Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,
 			int reposID) {
 		super();
-		
+		this.title=title;
 		this.startdate = startdate;
 		this.closedate = closedate;
 		this.address = address;
 		this.avatar = avatar;
 		this.isFulfilled = isFulfilled;
 		this.reposID = reposID;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Date getStartdate() {
