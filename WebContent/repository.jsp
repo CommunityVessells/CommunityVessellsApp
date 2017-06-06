@@ -230,12 +230,15 @@
 				<br>
 				
 				<div id="records">
-				<div class="container">
+				<div class="container-fluid">
+				
 					<div class="form-group label-floating">
 						<label class="control-label" for="focusedInput1">Search</label>
 						<input class="form-control search" type="text" id="focusedInput1"/>
+					
 					</div>
 				</div>
+				
 				<%if(thisRepo.getRepoType().equals("Clothing")) {%>
 					<table class="table table-hover" id="sortingTable">
 					<tr class='light-primary-color text-primary-color'>
