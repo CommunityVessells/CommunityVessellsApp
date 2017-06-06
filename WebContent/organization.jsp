@@ -105,7 +105,7 @@
 							<%
 								RepositoryDAO repodao = new RepositoryDAO();
 								LinkedList<Repository> repos = repodao.getRepositories();
-								int i=0;
+								
 								for (Repository r : repos) {
 							%>
 							<div class="well">

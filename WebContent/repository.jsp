@@ -237,13 +237,16 @@
 				</div>
 					<table class="table table-hover" id="sortingTable">
 					<tr class='light-primary-color text-primary-color'>
-						<td></td>
+						<td><button class="sort btn text-primary-color" data-sort="count">Quantity
+ 						</button></td>
 						<td><button class="sort btn text-primary-color" data-sort="title">Title
  						</button></td>
- 						<td><b>Column heading</b></td>
-						<td><b>Condition</b></td>
-						<td><b>Column heading</b></td>
-						<td><b>Date Stored</b></td>
+ 						<td><button class="sort btn text-primary-color" data-sort="size">Size</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="condition">Condition</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="promised">Promised
+ 						</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="date">Date Stored</button></td>
+						<td><button class="btn text-primary-color">Functions</button></td>
 					</tr>
 				  	<tbody id="tableProd" class="list">
 					<% LinkedList<Product> allProducts = null;
@@ -270,20 +273,32 @@
 						else { %>
 							<tr class='success'>
 						<% } %>
-							<td><%=p.getProdID() %></td>
+							<td class="count"><%=p.getCount() %></td>
 							<td class="title"><%=p.getTitle() %></td>
-							<td><%=p.getSize() %></td>
-							<td><%=p.getCondition() %></td>
+							<td class="size"><%=p.getSize() %></td>
+							<td class="condition"><%=p.getCondition() %></td>
 							<%if(p.isPromised()) { %>
-							<td>yes</td>
+							<td class="promised">yes</td>
 							<%} else { %>
-							<td>no</td>
+							<td class="promised">no</td>
 							<%}
 							if(p.getDateStored()!=null) {%>
-							<td> <%=p.getDateStored() %></td>
+							<td class="date"> <%=p.getDateStored() %></td>
 							<%} else { %>
-							<td>Not Available</td>
+							<td class="date">Not Available</td>
 							<%}%>
+							<%if(p.isFubar("Fubar") || p.hasExpired(new java.sql.Date(new java.util.Date().getTime()))) { 
+							
+							%>
+							<td><a class="btn btn-danger btn-sm" href="<%= response.encodeURL ("editproduct?repoID="+Integer.toString(p.getRepoID())+"&prodID="+Integer.toString(p.getProdID()))+"&remove=true&store=false"%>">Remove</a></td>
+							<% } 
+							else if(p.isPromised()) {
+							
+							%>
+							<td><a class="btn btn-success btn-sm" href="<%= response.encodeURL ("editproduct?repoID="+Integer.toString(p.getRepoID())+"&prodID="+Integer.toString(p.getProdID()))+"&remove=false&store=true"%>">Store</a></td>
+							<% } else {%>
+							<td></td>
+							<%} %>
 							</tr>
 					<% }
 					%>

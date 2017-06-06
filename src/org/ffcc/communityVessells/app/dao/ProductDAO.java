@@ -329,4 +329,72 @@ public class ProductDAO {
 				}
 			}
 		 }
+	 
+	 public static Product getProductByID(int prodID) throws Exception{
+			Connection con = null;
+			String sqlquery = "SELECT * FROM product WHERE productID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setInt(1, prodID);
+				ResultSet rs = selectst.executeQuery();
+			
+				
+				if(rs.next()){
+					
+					return new Product(rs.getInt("productID"),rs.getString("title"),rs.getString("prodType"), rs.getInt("repoID"), rs.getInt("count"),rs.getDate("dateStored") ,rs.getDate("expire"),rs.getBoolean("isPromised"),rs.getString("size"),rs.getString("clotheCond"));
+				}
+				rs.close();
+				selectst.close();
+				
+				return null;
+			}
+			catch(SQLException sqlE){
+				throw new Exception("An error occured while getting products from database: " + sqlE.getMessage());
+			}
+			finally {
+				try{
+					db.close();
+
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		 }
+	 
+	 public static void deleteProductByID(int prodID) throws Exception{
+			Connection con = null;
+			String sqlquery = "DELETE FROM product WHERE productID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement deletest = con.prepareStatement(sqlquery);
+				deletest.setInt(1, prodID);
+				deletest.executeUpdate();
+			
+				
+				deletest.close();
+				
+			}
+			catch(SQLException sqlE){
+				throw new Exception("An error occured while getting products from database: " + sqlE.getMessage());
+			}
+			finally {
+				try{
+					db.close();
+
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		 }
 }
