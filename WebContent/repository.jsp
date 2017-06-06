@@ -228,6 +228,7 @@
 					</div>
 				</div>
 				<br>
+				
 				<div id="records">
 				<div class="container">
 					<div class="form-group label-floating">
@@ -235,6 +236,7 @@
 						<input class="form-control search" type="text" id="focusedInput1"/>
 					</div>
 				</div>
+				<%if(thisRepo.getRepoType().equals("Clothing")) {%>
 					<table class="table table-hover" id="sortingTable">
 					<tr class='light-primary-color text-primary-color'>
 						<td><button class="sort btn text-primary-color" data-sort="count">Quantity
@@ -259,7 +261,7 @@
 						}				
 					%>
 
-					<%
+					<% 
 					for(Product p:allProducts){
 						if(p.isPromised()){ %>
 							<tr class='warning'>
@@ -300,13 +302,93 @@
 							<td></td>
 							<%} %>
 							</tr>
-					<% }
-					%>
+					<% }%>
+					
+					
+					
+					
 				  	</tbody>
 					</table>
+					<% } %>
+
+				<%if(thisRepo.getRepoType().equals("Food Products") || thisRepo.getRepoType().equals("Pharmaceuticals")) {%>
+					<table class="table table-hover" id="sortingTable">
+					<tr class='light-primary-color text-primary-color'>
+						<td><button class="sort btn text-primary-color" data-sort="count">Quantity
+ 						</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="title">Title
+ 						</button></td>
+ 						<td><button class="sort btn text-primary-color" data-sort="expire">Expires</button></td>
+						
+						<td><button class="sort btn text-primary-color" data-sort="promised">Promised
+ 						</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="date">Date Stored</button></td>
+						<td><button class="btn text-primary-color">Functions</button></td>
+					</tr>
+				  	<tbody id="tableProd" class="list">
+					<% LinkedList<Product> allProducts = null;
+						ProductDAO productDAO= new ProductDAO(); 
+						try {
+							 allProducts = productDAO.getProductsAllFields(thisRepo.getRepoID());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}				
+					%>
+
+					<% 
+					for(Product p:allProducts){
+						if(p.isPromised()){ %>
+							<tr class='warning'>
+						<% }
+						else if(!p.isPromised() && p.hasExpired(new java.sql.Date(new java.util.Date().getTime()))) { %>
+							<tr class='danger'>
+						<% }
+						else if(!p.isPromised() && p.isFubar("Fubar")) { %>
+							<tr class='danger'>
+						<% }
+						else { %>
+							<tr class='success'>
+						<% } %>
+							<td class="count"><%=p.getCount() %></td>
+							<td class="title"><%=p.getTitle() %></td>
+							<td class="expire"><%=p.getExpire() %></td>
+							
+							<%if(p.isPromised()) { %>
+							<td class="promised">yes</td>
+							<%} else { %>
+							<td class="promised">no</td>
+							<%}
+							if(p.getDateStored()!=null) {%>
+							<td class="date"> <%=p.getDateStored() %></td>
+							<%} else { %>
+							<td class="date">Not Available</td>
+							<%}%>
+							<%if(p.isFubar("Fubar") || p.hasExpired(new java.sql.Date(new java.util.Date().getTime()))) { 
+							
+							%>
+							<td><a class="btn btn-danger btn-sm" href="<%= response.encodeURL ("editproduct?repoID="+Integer.toString(p.getRepoID())+"&prodID="+Integer.toString(p.getProdID()))+"&remove=true&store=false"%>">Remove</a></td>
+							<% } 
+							else if(p.isPromised()) {
+							
+							%>
+							<td><a class="btn btn-success btn-sm" href="<%= response.encodeURL ("editproduct?repoID="+Integer.toString(p.getRepoID())+"&prodID="+Integer.toString(p.getProdID()))+"&remove=false&store=true"%>">Store</a></td>
+							<% } else {%>
+							<td></td>
+							<%} %>
+							</tr>
+					<% }%>
 					
 					
-				</div>	
+					
+					
+				  	</tbody>
+					</table>
+					<% } %>
+					
+				</div>
+				
+					
 			</div>
 		</div>
 		<!-- end table -->
