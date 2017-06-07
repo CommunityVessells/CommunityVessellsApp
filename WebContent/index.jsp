@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Request"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Repository"%>
+<%@ page import="org.ffcc.communityVessells.app.dao.RequestDAO"%>
+<%@ page import="org.ffcc.communityVessells.app.dao.RepositoryDAO"%>
+<%@ page import="java.util.LinkedList"%>
 <%@ page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,13 +141,119 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 <button id="lowercse" class="btn btn-raised btn-block text-center accent-color" type="button" data-toggle="modal" data-target="#signUpModal">
 	<h2 id="logo-small" class="text-primary-color text-center">Join The Cause</h2></button>
 </div>
+<hr class="divider-color">
+
+<div class="container main"  id="Requests">
+<h1 id="purpose" class="primary-text-color">Requests</h1>
+<h2 class="anton"><small>Closing soon:</small></h2>
+							<%
+								RequestDAO requestdao = new RequestDAO();
+								LinkedList<Request> requestsList = requestdao.getAllRequests();
+							
+							%>
+							<% 
+								for (Request r : requestsList) {
+									 
+									//check for requests closing max 5 days from now
+									if((int)((r.getClosedate().getTime()-(new java.util.Date().getTime())) / (1000 * 60 * 60 * 24))<=5) {
+							%>
+<div class="well text-center slideanim">
+							<h4 class="list-group-item-heading anton">
+							
+								<small><span class="text-info">
+										<%=r.getTitle()%>
+								</span> Details
+								</small>
+							</h4>
+							
+							<div class="container-fluid">
+								<div class="center-block">
+									<img src="<%=r.getAvatar() %>" alt="Request Image" class="img-reponsive" style="width:60%;height:auto;">
+								</div>
+							</div>
+							<br>
+							<h2 class="lobster text-accent-color"><%=r.getTitle()%></h2>
+							<p>
+								<b>Product Type: </b><%=RepositoryDAO.getRepositoryByID(r.getReposID()).getRepoType() %></p>
+							<p>
+								<b>Start Date: </b><%=r.getStartdate() %></p>
+							
+							<p><b>Closes on: </b><%=r.getClosedate() %></p>
+							
+							<p><b>Location: </b><%=r.getAddress() %></p>
+
+    						
+    							
+							<%-- URI rewrite  --%>
+							
+							<a class="btn btn-info btn-raised updateRepo" title="You need to sign in to promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</a>
+							
+
+</div>
+<% 
+
+									}
+								}
+%>
+
+		<button class="btn btn-info" data-toggle="collapse"
+							data-target="#allrequests" id="showAllRequests">
+							Show All Requests <span class="glyphicon glyphicon-chevron-down" id="iconR"></span>
+		</button>
+
+							<div class="collapse" id="allrequests">
+							<% 
+								for (Request r : requestsList) {
+							%>
+<div class="well text-center">
+							<h4 class="list-group-item-heading anton">
+							
+								<small><span class="text-info">
+										<%=r.getTitle()%>
+								</span> Details
+								</small>
+							</h4>
+							
+							<div class="container-fluid">
+								<div class="center-block">
+									<img src="<%=r.getAvatar() %>" alt="Request Image" class="img-reponsive" style="width:60%;height:auto;">
+								</div>
+							</div>
+							<br>
+							<h2 class="lobster text-accent-color"><%=r.getTitle()%></h2>
+							<p>
+								<b>Product Type: </b><%=RepositoryDAO.getRepositoryByID(r.getReposID()).getRepoType() %></p>
+							<p>
+								<b>Start Date: </b><%=r.getStartdate() %></p>
+							
+							<p><b>Closes on: </b><%=r.getClosedate() %></p>
+							
+							<p><b>Location: </b><%=r.getAddress() %></p>
+
+    						
+    							
+							<%-- URI rewrite repoID --%>
+							<a class="btn btn-info btn-raised  updateRepo" title="You need to sign in to promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</a>
+							
+
+</div>
+<% } %>
+							</div>
+</div>
+<!-- End Show Requests -->
 
 </div>
 
 <%@ include file="static_resources/footer.html" %>
 
 <%@ include file="static_resources/scriptIncludes.html" %>
-
+<%@ include file="static_resources/onclickCreateScript.html"%>
 <%@ include file="static_resources/initScript.html" %>
 <%@ include file="static_resources/scrollspyScript.html" %>
 <%@ include file="static_resources/animateScript.html" %>

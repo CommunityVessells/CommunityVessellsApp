@@ -521,7 +521,7 @@
     						
     							
 							<%-- URI rewrite repoID --%>
-							<a class="btn btn-info btn-raised  updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getReposID())+"&requestID="+Integer.toString(r.getRequestID()))%>">
+							<a class="btn btn-info btn-raised  updateRepo" title="Display Promised Products" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getReposID())+"&requestID="+Integer.toString(r.getRequestID()))%>">
 								<b>Details </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</a>
@@ -550,7 +550,7 @@
 
 	<%@ include file="static_resources/animateScript.html"%>
 	<%@ include file="static_resources/scrollspyScriptOrg.html" %>
-	<%@ include file="static_resources/onclickCreateScript.html"%>
+	
 	<%@ include file="static_resources/datepicker.html"%>
 	<%@ include file="static_resources/initList.html"%>
 	<%@ include file="static_resources/filterScript.html"%>
