@@ -90,7 +90,7 @@ public class CreateRequestController extends HttpServlet {
 				imgError=true;
 			}
 			
-			avatarPath= "Images/UserImages"+avatar.getName();
+			avatarPath= "Images/UserImages/"+avatar.getName();
 		}
 		
 		String title=request.getParameter("reqtitle");

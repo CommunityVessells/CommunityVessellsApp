@@ -99,3 +99,21 @@ $(document).ready(
     });
 
 </script>
+
+<script type="text/javascript">
+
+
+$(document).ready(		
+    function(){
+        $("#showAllRequests").click(function () {
+        	if($("#iconR").hasClass("glyphicon-chevron-down")){
+            	$("#iconR").addClass("glyphicon-chevron-up").removeClass("glyphicon-chevron-down");
+        	}
+        	else {
+        		$("#iconR").addClass("glyphicon-chevron-down").removeClass("glyphicon-chevron-up");
+        	}
+        });
+
+    });
+
+</script>

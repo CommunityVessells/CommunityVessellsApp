@@ -3,8 +3,10 @@
 <%@ page import="org.ffcc.communityVessells.app.models.Organization"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Repository"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Product"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Request"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.RepositoryDAO"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.ProductDAO"%>
+<%@ page import="org.ffcc.communityVessells.app.dao.RequestDAO"%>
 <%@ page import="java.util.LinkedList"%>
 <%@ page errorPage="error.jsp"%>
 <%
@@ -471,6 +473,73 @@
 						</div>
 			<!-- Issue Request end -->
 			<hr class="divider-color">
+			
+			<!-- Start show requests -->
+		<div class="row-content text-center" id="Requests">
+		<h3 class="anton"><small><%=thisRepo.getTitle()%> Requests</small></h3>
+		<button class="btn btn-info" data-toggle="collapse"
+							data-target="#allrequests" id="showAllRequests">
+							Show All Requests <span class="glyphicon glyphicon-chevron-down" id="iconR"></span>
+		</button>
+			
+
+			<div class="collapse" id="allrequests">
+			
+							<!-- loop div start -->
+							<%
+								RequestDAO requestdao = new RequestDAO();
+								LinkedList<Request> requestsList = requestdao.getRequests(thisRepo.getRepoID());
+								
+								for (Request r : requestsList) {
+							%>
+							<div class="well">
+							<h4 class="list-group-item-heading anton">
+							
+								<small><span class="text-info">
+										<%=r.getTitle()%>
+								</span> Details
+								</small>
+							</h4>
+							
+							<div class="container-fluid">
+								<div class="center-block">
+									<img src="<%=r.getAvatar() %>" alt="Request Image" class="img-reponsive" style="width:60%;height:auto;">
+								</div>
+							</div>
+							<br>
+							<h2 class="lobster text-accent-color"><%=r.getTitle()%></h2>
+							<p>
+								<b>Repository Type: </b><%=thisRepo.getRepoType() %></p>
+							<p>
+								<b>Start Date: </b><%=r.getStartdate() %></p>
+							
+							<p><b>Closes on: </b><%=r.getClosedate() %></p>
+							
+							<p><b>Location: </b><%=r.getAddress() %></p>
+
+    						
+    							
+							<%-- URI rewrite repoID --%>
+							<a class="btn btn-info btn-raised  updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getReposID())+"&requestID="+Integer.toString(r.getRequestID()))%>">
+								<b>Details </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</a>
+							
+
+						</div>
+						
+						<%
+							}
+						%>
+						
+						</div>
+						<!-- loop div end -->
+			
+			
+			</div>
+			
+			
+		<!-- End show requests -->
 	</div>
 		<%@ include file="static_resources/footer.html"%>
 
@@ -484,7 +553,7 @@
 	<%@ include file="static_resources/datepicker.html"%>
 	<%@ include file="static_resources/initList.html"%>
 	<%@ include file="static_resources/filterScript.html"%>
-
+	
 	</body>
 	</html>
 	<% } %>

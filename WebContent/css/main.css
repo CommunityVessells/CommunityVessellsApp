@@ -93,6 +93,7 @@ body {
     visibility: visible;
 }
 
+
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
 @keyframes slide {
     0% {
