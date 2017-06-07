@@ -91,6 +91,45 @@ public class ProductDAO {
 			}
 	 }
 	 
+	 public void saveProductAllFields(Product product) throws Exception{
+			Connection con = null;
+			String sqlupdate = "INSERT INTO product (repoID, title, prodType, count,dateStored, isPromised,expire,size,clotheCond) VALUES (? , ? , ? , ? , ?, ? ,? ,? ,?);";			
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement insertst = con.prepareStatement(sqlupdate);
+				
+				insertst.setInt(1,product.getRepoID());
+				insertst.setString(2, product.getTitle());
+				insertst.setString(3, product.getProdType());
+				insertst.setInt(4, product.getCount());
+				insertst.setDate(5, product.getDateStored());
+				insertst.setInt(6, Helpers.returnIntFromBoolean(product.isPromised()));
+				insertst.setDate(7, product.getExpire());
+				insertst.setString(8, product.getSize());
+				insertst.setString(9, product.getCondition());
+				
+				
+				insertst.executeUpdate();
+				
+				insertst.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while inserting product to database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+	 }
+	 
 	 public void setProductTypeFood(Product product,Date expire) throws Exception{
 			Connection con = null;
 			product.setProdFood(expire);

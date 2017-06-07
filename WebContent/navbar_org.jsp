@@ -13,8 +13,8 @@
 	        
 	        <li class="hover-ul"><a href="#Repositories">Repositories</a></li>
 	        <li class="hover-ul"><a href="#CreateNew">Create New Repository</a></li>
-			<li class="hover-ul"><a href="#Requests)">Requests</a></li>
-			<li class="hover-ul"><a href="#Issue)">Issue New Request</a></li>
+			<li class="hover-ul"><a href="#Requests">Requests</a></li>
+			<li class="hover-ul"><a href="#Issue">Issue New Request</a></li>
 								
 	      </ul>
 

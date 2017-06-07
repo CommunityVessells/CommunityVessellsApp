@@ -10,7 +10,7 @@ public class Request {
 	private Date closedate;
 	private String address;
 	private String avatar;
-	private boolean isFulfilled;
+	private boolean isFulfilled=false;
 	private int reposID;
 
 	public Request(int requestID, String title,Date startdate, Date closedate, String address, String avatar, boolean isFulfilled,

@@ -37,6 +37,20 @@ public class Product {
 		this.condition=condition;
 	}
 
+	public Product(String title, String prodType,int repoID, int count, Date dateStored ,Date expired,boolean isPromised,String size,String condition) {
+		super();
+		
+		this.title = title;
+		this.prodType=prodType;
+		this.repoID = repoID;
+		this.count = count;
+		this.dateStored = dateStored;
+		this.isPromised=isPromised;
+		this.expire=expired;
+		this.size=size;
+		this.condition=condition;
+	}
+	
 	public Product(int prodID, String title, int repoID, int count) {
 		super();
 		this.prodID = prodID;

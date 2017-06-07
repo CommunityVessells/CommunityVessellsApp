@@ -414,40 +414,63 @@
 	
 					<!--form start-->
 
-					<form class="form-horizontal" action="createrequest" method="post">
+					<form class="form-horizontal" action="createrequest" method="post" enctype="multipart/form-data">
 						<fieldset>
 						
 						<div class="form-group">
 						
-							<label for="prodtitle" class="control-label col-md-2">Title  </label>
+							<label for="reqtitle" class="control-label col-md-2">Title  </label>
 							<div class="col-sm-10">
-								<input type="text" name="prodtitle" class="form-control" id="prodtitle" placeholder="Product Title">
+								<input type="text" name="reqtitle" class="form-control" id="reqtitle" placeholder="Request Title">
 							</div>
 						</div>
 						
 						<div class="form-group">
 						
-							<label for="quantity" class="control-label col-md-2">Quantity </label>
+							<label for="startdate" class="control-label col-md-2">Start Date </label>
 							<div class="col-sm-10">
-								<input type="number" name="quantity" min="1" class="form-control" id="quantity">
+								<input type="text" name="startdate" class="form-control" id="startdate">
 							</div>
 						</div>
 						
+						<div class="form-group">
 						
-						
-							
-          				<div class="form-group">	 
-						<div class="checkbox">
-          					<label>
-            					<input type="checkbox" id="promised" name="promised" value="promised"> Promised Product
-          					</label>
+							<label for="closedate" class="control-label col-md-2">Close Date </label>
+							<div class="col-sm-10">
+								<input type="text" name="closedate" class="form-control" id="closedate">
+							</div>
 						</div>
+						
+						<div class="form-group">
+						
+							<label for="address" class="control-label col-md-2">Address </label>
+							<div class="col-sm-10">
+								<input type="text" name="address" class="form-control" id="address" placeholder="Address">
+							</div>
+						</div>
+						
+						<div class="form-group">
+      						<label for="inputFile" class="col-md-2 control-label">Upload Image</label>
+							<div class="col-md-10">
+        						<input readonly="" class="form-control" placeholder="Browse..." type="text">        						
+        						<input id="inputFile" name="file" multiple="" type="file" accept="image/x-png,image/gif,image/jpeg">
+
+        						<p class="help-block" id="helper">Only png,jpeg or gif files accepted. File upload limit: 16Mb</p>
+      						</div>
+    					</div>				
+							
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-md-10">
+								<button type="submit" class="btn btn-primary">Save</button>
+								<button type="reset" class="btn btn-default">Reset</button>
+							</div>	
 						</div>
 						</fieldset>
 						</form>
 						</div>
 						</div>
 			<!-- Issue Request end -->
+			<hr class="divider-color">
 	</div>
 		<%@ include file="static_resources/footer.html"%>
 
