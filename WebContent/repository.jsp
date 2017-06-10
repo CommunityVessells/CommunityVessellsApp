@@ -542,7 +542,7 @@
 			
 		<!-- End show requests -->
 	</div>
-		<%@ include file="static_resources/footer.html"%>
+	<%@ include file="static_resources/footer.html"%>
 
 	<%@ include file="static_resources/scriptIncludes.html"%>
 
@@ -550,7 +550,7 @@
 
 	<%@ include file="static_resources/animateScript.html"%>
 	<%@ include file="static_resources/scrollspyScriptOrg.html" %>
-	
+	<%@ include file="static_resources/onclickCreateScript.html" %>
 	<%@ include file="static_resources/datepicker.html"%>
 	<%@ include file="static_resources/initList.html"%>
 	<%@ include file="static_resources/filterScript.html"%>

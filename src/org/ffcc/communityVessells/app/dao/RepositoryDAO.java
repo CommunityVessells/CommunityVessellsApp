@@ -52,6 +52,43 @@ public class RepositoryDAO {
 			}
 		}
 	 }
+	
+	public LinkedList<Repository> getRepositories(int orgID) throws Exception{
+		Connection con = null;
+		String sqlquery = "SELECT * FROM repository WHERE orgID=?;";
+		DB db = new DB();
+		
+		try{
+			db.open();
+			con = db.getConnection();
+			
+			PreparedStatement selectst = con.prepareStatement(sqlquery);
+			selectst.setInt(1, orgID);
+			ResultSet rs = selectst.executeQuery();
+		
+			LinkedList<Repository> repositoryList = new LinkedList<Repository>();
+			while(rs.next()){
+				repositoryList.add(new Repository(rs.getInt("repoID"),rs.getString("title"),rs.getString("repoType"),rs.getInt("capacity"),rs.getInt("availableProducts"),rs.getInt("orgID")));
+			}
+			rs.close();
+			selectst.close();
+			
+			return repositoryList;
+		}
+		catch(SQLException sqlE){
+			throw new Exception("An error occured while getting repositories from database: " + sqlE.getMessage());
+		}
+		finally {
+			try{
+				db.close();
+
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	 }
+	
 	 public void saveRepository(Repository repository) throws Exception{
 			Connection con = null;
 			String sqlcreate = "INSERT INTO repository (capacity, availableProducts, orgID, title, repoType) VALUES (? , ? , ? , ? , ?);";

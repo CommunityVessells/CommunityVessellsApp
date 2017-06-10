@@ -104,7 +104,7 @@
 	<div class="collapse" id="repos">
 							<%
 								RepositoryDAO repodao = new RepositoryDAO();
-								LinkedList<Repository> repos = repodao.getRepositories();
+								LinkedList<Repository> repos = repodao.getRepositories(temp.getOrgID());
 								
 								for (Repository r : repos) {
 							%>
