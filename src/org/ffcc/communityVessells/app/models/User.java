@@ -5,7 +5,6 @@
 package org.ffcc.communityVessells.app.models;
 
 public class User {
-	
 	private String email;
 	private String password;
 	private String username;
@@ -25,6 +24,8 @@ public class User {
 		this.username = username;
 		this.avatar =  avatar;
 	}
+	
+
 
 	public String getEmail() {
 		return email;

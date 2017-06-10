@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Volunteer"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Request"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Repository"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.RequestDAO"%>
@@ -23,6 +24,7 @@
 <% } 
 if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals("volunteer")){ %>
 <%@ include file="navbar_vol.jsp" %>
+
 <% } %>
 
 <% if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals("organization")){ %>
@@ -185,12 +187,19 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
     						
     							
 							<%-- URI rewrite  --%>
-							
-							<a class="btn btn-info btn-raised updateRepo" title="You need to sign in to promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
+							<% if(session.getAttribute("usertype")!=null && session.getAttribute("usertype").equals("volunteer")) {%>
+							<a class="btn btn-info btn-raised updateRepo" title="Make a Promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
 								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</a>
 							
+							<% } 
+							 else { %>
+							<button class="btn btn-info btn-raised updateRepo" title="You need to sign in to promise" data-toggle="modal" data-target="#loginModal">
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</button>
+							<% } %>
 
 </div>
 <% 
@@ -236,10 +245,18 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
     						
     							
 							<%-- URI rewrite repoID --%>
-							<a class="btn btn-info btn-raised  updateRepo" title="You need to sign in to promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
+							<% if(session.getAttribute("usertype")!=null && session.getAttribute("usertype").equals("volunteer")) {%>
+							<a class="btn btn-info btn-raised updateRepo" title="Make a Promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
 								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</a>
+							<% } 
+							 else { %>
+							<button class="btn btn-info btn-raised updateRepo" title="You need to sign in to promise" data-toggle="modal" data-target="#loginModal">
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</button>
+							<% } %>
 							
 
 </div>

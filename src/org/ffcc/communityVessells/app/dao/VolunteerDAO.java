@@ -100,7 +100,7 @@ public class VolunteerDAO {
 				selectst.setString(1, email);
 				ResultSet rs=selectst.executeQuery();
 				if(rs.next()){
-					return new Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getString("firstName"),rs.getString("lastName"));
+					return new Volunteer(rs.getString("email"),rs.getString("password"),rs.getString("username"),rs.getString("avatar"),rs.getInt("userID"),rs.getString("firstName"),rs.getString("lastName"));
 				}
 				
 				selectst.close();

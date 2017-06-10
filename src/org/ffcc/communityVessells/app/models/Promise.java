@@ -53,7 +53,35 @@ public class Promise {
 		this.size = size;
 		this.condition = condition;
 	}
+	
+	public Promise(int requestID, int volunteerID, String volunteerEmail, boolean isFulfilled, String title,
+			String prodType, int count, Date expire) {
+		super();
+		this.requestID = requestID;
+		this.volunteerID = volunteerID;
+		this.volunteerEmail = volunteerEmail;
+		this.isFulfilled = isFulfilled;
+		this.title = title;
+		this.prodType = prodType;
+		this.count = count;
+		this.expire = expire;
 
+	}
+
+	public Promise(int requestID, int volunteerID, String volunteerEmail, boolean isFulfilled, String title,
+			String prodType, int count, String size, String condition) {
+		super();
+		this.requestID = requestID;
+		this.volunteerID = volunteerID;
+		this.volunteerEmail = volunteerEmail;
+		this.isFulfilled = isFulfilled;
+		this.title = title;
+		this.prodType = prodType;
+		this.count = count;
+		this.size = size;
+		this.condition = condition;
+	}
+	
 	public int getRequestID() {
 		return requestID;
 	}

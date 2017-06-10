@@ -90,6 +90,43 @@ public class RequestDAO {
 		}
 	 }
 	
+	public Request getRequestByID(int requestID) throws Exception{
+		Connection con = null;
+		String sqlquery = "SELECT * FROM request WHERE requestID = ?;";
+		DB db = new DB();
+		
+		try{
+			db.open();
+			con = db.getConnection();
+			
+			PreparedStatement selectst = con.prepareStatement(sqlquery);
+			selectst.setInt(1, requestID);
+			ResultSet rs = selectst.executeQuery();
+			Request request=null;
+			
+			if(rs.next()){
+				
+				request = new Request(rs.getInt("requestID"), rs.getString("title"), rs.getDate("startdate"), rs.getDate("closedate"), rs.getString("address"),rs.getString("avatar"), Helpers.returnBooleanFromInt(rs.getInt("isFulfilled")) , rs.getInt("reposID"));
+			}
+			rs.close();
+			selectst.close();
+			
+			return request;
+		}
+		catch(SQLException sqlE){
+			throw new Exception("An error occured while getting requests from database: " + sqlE.getMessage());
+		}
+		finally {
+			try{
+				db.close();
+
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	 }
+	
 	 public void createRequest(Request req) throws Exception{
 			Connection con = null;
 			String sqlupdate = "INSERT INTO request (title, startdate, closedate, address, reposID, avatar, isFulfilled) VALUES (? , ? , ? , ? , ? , ? , ?);";			

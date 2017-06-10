@@ -78,6 +78,8 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("lastname", vol.getLastName());
 				session.setAttribute("avatar", vol.getAvatar());
 				
+				session.setAttribute("volunteer", vol);
+				
 				RequestDispatcher success = request.getRequestDispatcher("/volunteer.jsp");
 				success.forward(request, response);
 			}
