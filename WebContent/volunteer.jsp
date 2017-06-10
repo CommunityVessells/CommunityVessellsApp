@@ -15,7 +15,7 @@
 <html lang="en">
 <%@ include file="static_resources/head.html" %>
 
-<body id="comVessells" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="vol" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 <%@ include file="static_resources/loginModal.html" %>
 	<%
@@ -103,19 +103,7 @@
 		</button>
 		
 		<div class="collapse table-responsive" id="promises">
-			  		<div class="checkbox" id="filters">
-					<div class="togglebutton">
-						<label> <input type="checkbox"  id="expirefilter" checked>Foo
-						</label> 
-						&nbsp;
-						<label> <input type="checkbox" id="promisefilter" checked>Promised 
-						</label>
-						&nbsp;
-						<label> <input type="checkbox" id="availablefilter" checked>Available 
-						</label>
-						&nbsp;
-					</div>
-				</div>
+				
 				
 				<div id="records">
 				<div class="container-fluid">
@@ -148,7 +136,7 @@
 						RequestDAO reqDAO = new RequestDAO();
 						Request req= null;
 						
-						volPromises = promiseDAO.getPromisesByVolunteer(vol.getUserID());
+						volPromises = PromiseDAO.getPromisesByVolunteer(vol.getUserID());
 						
 						for(Promise p:volPromises){
 							
@@ -193,7 +181,88 @@
 </div>
 <hr class="divider-color">
 
+<div class="container-fluid text-center" id="PromisesFull">
+		<h1 class="primary-text-color anton">My Fulfilled Promises</h1>
+		<button class="btn btn-info" data-toggle="collapse"
+							data-target="#promisesful" id="showAllFulfilled">
+							Fulfilled Promises <span class="glyphicon glyphicon-chevron-down" id="iconF"></span>
+		</button>
+		
+		<div class="collapse table-responsive" id="promisesful">
+				
+				
+				<div id="records">
+				<div class="container-fluid">
+					<div class="form-group label-floating">
+						<label class="control-label" for="focusedInput2">Search</label>
+						<input class="form-control search" type="text" id="focusedInput2"/>
+					</div>
+				</div>
+				</div>
+					
+					<table class="table table-hover" id="sortingTable">
+					<tr class='light-primary-color text-primary-color'>
 
+ 						<td><button class="sort btn text-primary-color" data-sort="request">Request
+ 						</button></td>
+ 						<td><button class="sort btn text-primary-color" data-sort="count">Quantity
+ 						</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="title">Title
+ 						</button></td>
+ 						<td><button class="sort btn text-primary-color" data-sort="type">Type
+ 						</button></td>
+ 						<td><button class="sort btn text-primary-color" data-sort="size">Size</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="condition">Condition</button></td>
+						<td><button class="sort btn text-primary-color" data-sort="date">Expiry Date</button></td>
+						
+					</tr>
+					<tbody id="tableProd" class="list">
+					<% 	
+						
+						
+						
+						for(Promise p:volPromises){
+							
+							if(p.isFulfilled()){	
+							req = reqDAO.getRequestByID(p.getRequestID()); 
+
+					%>
+						<tr class='success'>
+							<td class="request"><%=req.getTitle()%></td>
+							<td class="count"><%=p.getCount() %></td>
+							<td class="title"><%=p.getTitle() %></td>
+							<td class="type"><%=p.getProdType() %></td>
+							
+							<%if(p.getSize()!=null){ %>
+							<td class="size"><%=p.getSize() %></td>
+							<%} %>
+							<%if(p.getSize()==null) { %>
+							<td class="size">N/A</td>
+							<%} %>
+							<%if(p.getCondition()!=null){ %>
+							<td class="condition"><%=p.getCondition() %></td>
+							<%}%>
+							<%if(p.getCondition()==null) {%>
+							<td class="condition">N/A</td>
+							<%}%>
+							
+							<%if(p.getExpire()!=null){ %>
+							<td class="date"><%=p.getExpire() %></td>
+							<%}%>
+							<%if(p.getExpire()==null) { %>
+							<td class="date">N/A</td>
+							<%} %>
+						</tr>	
+					<%
+							}
+						}
+						 
+					%>
+					</tbody>
+					</table>
+		</div>
+</div>
+<hr class="divider-color">
 <!-- Requests start -->
 <div class="text-center"  id="Requests">
 <h1 id="purpose" class="primary-text-color">Requests</h1>
@@ -320,7 +389,7 @@
 <%@ include file="static_resources/footer.html" %>
 
 <%@ include file="static_resources/scriptIncludes.html" %>
-<%@ include file="static_resources/scrollspyScript.html" %>
+
 <%@ include file="static_resources/initScript.html" %>
 <%@ include file="static_resources/onclickCreateScript.html"%>
 <%@ include file="static_resources/animateScript.html" %>

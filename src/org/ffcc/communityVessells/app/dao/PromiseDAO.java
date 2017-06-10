@@ -171,4 +171,40 @@ public class PromiseDAO {
 		 }
 	 
 
+	 public static Promise getPromiseByID(int promiseID) throws Exception{
+			Connection con = null;
+			String sqlquery = "SELECT * FROM promise WHERE promiseID = ?;";
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setInt(1, promiseID);
+				ResultSet rs = selectst.executeQuery();
+			
+				Promise thisPromise=null;
+				if(rs.next()){
+					
+					thisPromise=new Promise(rs.getInt("promiseID"), rs.getInt("requestID"), rs.getInt("volunteerID"), rs.getString("volunteerEmail"), Helpers.returnBooleanFromInt(rs.getInt("isFulfilled")),rs.getString("title"),rs.getString("prodType"),rs.getInt("count"),rs.getDate("expire"),rs.getString("size"),rs.getString("clotheCond")) ;
+				}
+				rs.close();
+				selectst.close();
+				
+				return thisPromise;
+			}
+			catch(SQLException sqlE){
+				throw new Exception("An error occured while getting promises from database: " + sqlE.getMessage());
+			}
+			finally {
+				try{
+					db.close();
+
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		 }
 }

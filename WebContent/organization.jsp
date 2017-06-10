@@ -175,7 +175,7 @@
 	<%@ include file="static_resources/initScript.html"%>
 
 	<%@ include file="static_resources/animateScript.html"%>
-	<%@ include file="static_resources/scrollspyScriptOrg.html" %>
+	
 	<%@ include file="static_resources/onclickCreateScript.html"%>
 </body>
 </html>

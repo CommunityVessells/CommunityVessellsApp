@@ -11,7 +11,7 @@
 	    <div class="navbar-collapse collapse navbar-inverse-collapse">
 	      <ul class="nav navbar-nav">
 	        
-	        <li class="hover-ul"><a href="#Promises">My Promises</a></li>
+	        <li class="hover-ul"><a href="volunteer.jsp#Promises">My Promises</a></li>
 			<li class="hover-ul"><a href="#Requests">Requests</a></li>					
 	      </ul>
 

@@ -4,9 +4,11 @@
 <%@ page import="org.ffcc.communityVessells.app.models.Repository"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Product"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Request"%>
+<%@ page import="org.ffcc.communityVessells.app.models.Promise"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.RepositoryDAO"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.ProductDAO"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.RequestDAO"%>
+<%@ page import="org.ffcc.communityVessells.app.dao.PromiseDAO"%>
 <%@ page import="java.util.LinkedList"%>
 <%@ page errorPage="error.jsp"%>
 <%
@@ -521,7 +523,7 @@
     						
     							
 							<%-- URI rewrite repoID --%>
-							<a class="btn btn-info btn-raised  updateRepo" title="Display Promised Products" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getReposID())+"&requestID="+Integer.toString(r.getRequestID()))%>">
+							<a class="btn btn-info btn-raised  updateRepo" title="Display Promised Products" href="<%= response.encodeURL ("request.jsp?repoID="+Integer.toString(r.getReposID())+"&requestID="+Integer.toString(r.getRequestID()))%>">
 								<b>Details </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</a>
@@ -541,6 +543,13 @@
 			
 			
 		<!-- End show requests -->
+
+		
+		<!-- Start show promises -->
+
+		
+		
+		<!-- End show promises -->
 	</div>
 	<%@ include file="static_resources/footer.html"%>
 
@@ -549,7 +558,7 @@
 	<%@ include file="static_resources/initScript.html"%>
 
 	<%@ include file="static_resources/animateScript.html"%>
-	<%@ include file="static_resources/scrollspyScriptOrg.html" %>
+	
 	<%@ include file="static_resources/onclickCreateScript.html" %>
 	<%@ include file="static_resources/datepicker.html"%>
 	<%@ include file="static_resources/initList.html"%>

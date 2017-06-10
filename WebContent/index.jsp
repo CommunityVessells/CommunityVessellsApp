@@ -272,7 +272,7 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 <%@ include file="static_resources/scriptIncludes.html" %>
 <%@ include file="static_resources/onclickCreateScript.html"%>
 <%@ include file="static_resources/initScript.html" %>
-<%@ include file="static_resources/scrollspyScript.html" %>
+
 <%@ include file="static_resources/animateScript.html" %>
 
 </body>
