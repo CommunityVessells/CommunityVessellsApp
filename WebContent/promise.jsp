@@ -172,6 +172,7 @@
 							<div class="col-sm-offset-2 col-md-10">
 								<button type="submit" class="btn btn-primary">Save</button>
 								<button type="reset" class="btn btn-default">Reset</button>
+								<a href="volunteer.jsp" class="btn btn-info">Go Back</a>
 							</div>
 						</div>
 					</fieldset>
