@@ -21,6 +21,7 @@
 	<%
 		RequestDAO reqDAO = new RequestDAO();
 		Request thisRequest = reqDAO.getRequestByID(Integer.parseInt(request.getParameter("requestID")));
+		Repository thisRepo = RepositoryDAO.getRepositoryByID(Integer.parseInt(request.getParameter("repoID")));
 	%>
 
 <%@ include file="navbar_org.jsp" %>
@@ -87,6 +88,7 @@
 	<p class="maintext"><b>Start Date: </b><%=thisRequest.getStartdate()%></p>
 	<p class="maintext"><b>Close Date: </b><%=thisRequest.getClosedate()%></p>
 	<p class="maintext"><b>Address: </b><%=thisRequest.getAddress()%></p>
+	<p class="maintext"><b>Repository: </b><a class="btn btn-link" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(thisRepo.getRepoID()))%>" target="_self"><%=thisRepo.getTitle() %></a></p>
 </div>
 <hr class="divider-color">
 
