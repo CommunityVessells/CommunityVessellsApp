@@ -7,7 +7,7 @@ import java.sql.*;
 public class DB {
 	private final String dbname = "ffcc";
 	private final String dbusername = "root";
-	private final String dbpassword = "root";
+	private final String dbpassword = "@cdbcmp@)!&";
 
 	private Connection con = null;
 

@@ -69,7 +69,7 @@ public class CreateRequestController extends HttpServlet {
 		boolean dateError=false;
 		//Upload image using MultipartConfig and Servlet Api 3.0
 		
-		String destinationRealPath="C:/Users/user/eclipseWorkspace/CommunityVessellsApp/WebContent/Images/UserImages";
+		String destinationRealPath="/opt/tomcat/webapps/CommunityVessellsApp/Images/UserImages";
 
 		//read file name and content from form
 		Part filePart = request.getPart("file");
