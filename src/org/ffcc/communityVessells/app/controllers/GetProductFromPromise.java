@@ -1,8 +1,6 @@
 package org.ffcc.communityVessells.app.controllers;
 
 import java.io.IOException;
-import java.util.LinkedList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,6 +53,7 @@ public class GetProductFromPromise extends HttpServlet {
 		Promise thisPromise = null;
 		Product thisProduct = null;
 		
+		
 		try {
 			thisRepo = RepositoryDAO.getRepositoryByID(Integer.parseInt(request.getParameter("repoID")));
 		}catch (NumberFormatException e) {
@@ -74,10 +73,45 @@ public class GetProductFromPromise extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		thisProduct = new Product(thisPromise.getTitle(),thisRepo.getRepoID(),thisPromise.getCount());
+		java.sql.Date sqlDateStored = new java.sql.Date(new java.util.Date().getTime());
 		
+		if(thisPromise.getProdType().equals("Food Products")){
+			
+			thisProduct.setProdFood(thisPromise.getExpire());
+		}
+		if(thisPromise.getProdType().equals("Pharmaceuticals")){
+			thisProduct.setProdPharm(thisPromise.getExpire());
+		}
+		if(thisPromise.getProdType().equals("Clothing")){
+			thisProduct.setProdClothing(thisPromise.getCondition(), thisPromise.getSize());
+		}
+		if(thisRepo.getAvailableProducts()+thisPromise.getCount()>thisRepo.getCapacity()){
+			request.setAttribute("errormessage", "Products stored cannot exceed Repository "+thisRepo.getTitle()+" capacity: "+thisRepo.getCapacity());
+			RequestDispatcher error = request.getRequestDispatcher(response.encodeURL ("request.jsp?repoID="+Integer.toString(thisRepo.getRepoID()))+"&requestID="+Integer.toString(thisPromise.getRequestID())); 
+			error.forward(request, response);
+		}
+		else{
+		
+			thisProduct.setDateStored(sqlDateStored);
+			thisProduct.setAvailable();
+			thisRepo.setAvailableProducts(thisRepo.getAvailableProducts()+thisProduct.getCount());
+			ProductDAO prodDAO = new ProductDAO();
+			RepositoryDAO repoDAO = new RepositoryDAO();
+			try {
+				prodDAO.saveProductAllFields(thisProduct);
+				repoDAO.updateRepository(thisRepo);
+				PromiseDAO.setPromiseFulfilled(promiseID);
+				session.setAttribute("successmessage","Promise"+" "+thisPromise.getTitle()+" has been successfully fulfilled");
+				response.sendRedirect(response.encodeURL ("request.jsp?repoID="+Integer.toString(thisRepo.getRepoID()))+"&requestID="+Integer.toString(thisPromise.getRequestID()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				request.setAttribute("errormessage", "There has been an error while saving product from promise.Please try again.");
+				RequestDispatcher error = request.getRequestDispatcher(response.encodeURL ("request.jsp?repoID="+Integer.toString(thisRepo.getRepoID()))+"&requestID="+Integer.toString(thisPromise.getRequestID())); 
+				error.forward(request, response);
+			}
+		}
 	}
 
 	/**

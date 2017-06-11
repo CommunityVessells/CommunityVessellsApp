@@ -121,7 +121,7 @@
  						<td><button class="sort btn text-primary-color" data-sort="size">Size</button></td>
 						<td><button class="sort btn text-primary-color" data-sort="condition">Condition</button></td>
 						<td><button class="sort btn text-primary-color" data-sort="date">Expiry Date</button></td>
-						<td><button class="btn text-primary-color">Functions</button></td>
+						<td><button class="btn text-primary-color">Fulfill</button></td>
 						
 					</tr>
 					<tbody id="tableProd" class="list">

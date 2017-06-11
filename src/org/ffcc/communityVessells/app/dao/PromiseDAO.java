@@ -59,6 +59,39 @@ public class PromiseDAO {
 			
 	 }
 	 
+	 public static void setPromiseFulfilled(int promiseID) throws Exception{
+			Connection con = null;
+			String sqlupdate = "UPDATE promise SET isFulfilled = ? WHERE promiseID = ?;";			
+			DB db = new DB();
+			
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement updatest = con.prepareStatement(sqlupdate);
+
+				updatest.setInt(1, 1);
+				updatest.setInt(2, promiseID);
+				
+				updatest.executeUpdate();
+				
+				updatest.close();
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				throw new Exception("An error occured while updating promise in database: " + e.getMessage());
+			}finally{
+				try{
+					db.close();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+
+			
+	 }
+	 
 	 public static LinkedList<Promise> getPromisesByRequest(int requestID) throws Exception{
 			Connection con = null;
 			String sqlquery = "SELECT * FROM promise WHERE requestID = ?;";
