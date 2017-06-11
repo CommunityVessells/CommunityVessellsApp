@@ -164,5 +164,42 @@ public class RequestDAO {
 			}
 			
 	 }
+	 
+		public static boolean hasRepositoryRequest(int reposID) throws Exception{
+			Connection con = null;
+			String sqlquery = "SELECT * FROM request WHERE reposID = ?;";
+			DB db = new DB();
+			boolean hasRequest=false;
+			try{
+				db.open();
+				con = db.getConnection();
+				
+				PreparedStatement selectst = con.prepareStatement(sqlquery);
+				selectst.setInt(1, reposID);
+				ResultSet rs = selectst.executeQuery();
+				
+				
+				if(rs.next()){
+					
+					hasRequest=true;
+				}
+				rs.close();
+				selectst.close();
+				return hasRequest;
+				
+			}
+			catch(SQLException sqlE){
+				throw new Exception("An error occured while getting requests from database: " + sqlE.getMessage());
+			}
+			finally {
+				try{
+					db.close();
+
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		 }
 	//end functions
 }

@@ -403,6 +403,7 @@
 		<!-- end table -->
 		</div>
 		<hr class="divider-color">
+		<%if(!RequestDAO.hasRepositoryRequest(thisRepo.getRepoID())) {%>
 					<!-- Issue Request start -->
 					<div class="container-fluid text-center">
 			<div id="Issue">
@@ -476,7 +477,7 @@
 						</div>
 			<!-- Issue Request end -->
 			<hr class="divider-color">
-			
+			<%} %>
 			<!-- Start show requests -->
 		<div class="row-content text-center" id="Requests">
 		<h3 class="anton"><small><%=thisRepo.getTitle()%> Requests</small></h3>

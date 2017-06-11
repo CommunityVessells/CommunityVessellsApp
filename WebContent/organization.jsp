@@ -3,6 +3,7 @@
 <%@ page import="org.ffcc.communityVessells.app.models.Organization"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Repository"%>
 <%@ page import="org.ffcc.communityVessells.app.dao.RepositoryDAO"%>
+<%@ page import="org.ffcc.communityVessells.app.dao.RequestDAO"%>
 <%@ page import="java.util.LinkedList"%>
 <%@ page errorPage="error.jsp"%>
 <%
@@ -123,12 +124,13 @@
 								<b>Total Capacity: </b><%=r.getCapacity()%></p>
 							<p>
 								<b>Available Products: </b><%=r.getAvailableProducts()%></p>
+								<%if(!RequestDAO.hasRepositoryRequest(r.getRepoID())) {%>
 							<a
 								class="btn btn-default btn-raised light-primary-color updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getRepoID()))+"#Issue"%>">
 								<b>Issue Request</b><span class="glyphicon glyphicon-plus"
 									id="symbolupdate"> </span>
 							</a>
-							
+							<%} %>
     
 							<%-- URI rewrite repoID --%>
 							<a class="btn btn-info btn-raised  updateRepo" href="<%= response.encodeURL ("repository.jsp?repoID="+Integer.toString(r.getRepoID()))%>">

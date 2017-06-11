@@ -94,11 +94,21 @@
 <div class="container-fluid text-center" id="Promises">
 		<h1 class="primary-text-color anton"><small>Promises</small></h1>
 		<button class="btn btn-info" data-toggle="collapse"
-							data-target="#promises" id="showPromises">
+							data-target="#promisesbyrequest" id="showPromises">
 							Show All Promises <span class="glyphicon glyphicon-chevron-down" id="iconPR"></span>
 		</button>
 		
-		<div class="collapse table-responsive" id="promises">
+		<div class="collapse table-responsive" id="promisesbyrequest">
+		
+			  	<div class="checkbox" id="filters">
+					<div class="togglebutton">
+						<label> <input type="checkbox"  id="fulfillfilter" checked>Fulfilled
+						</label> 
+						&nbsp;
+					</div>
+				</div>
+				<br>
+		
 				<div id="records">
 				<div class="container-fluid">
 					<div class="form-group label-floating">
@@ -121,7 +131,7 @@
  						<td><button class="sort btn text-primary-color" data-sort="size">Size</button></td>
 						<td><button class="sort btn text-primary-color" data-sort="condition">Condition</button></td>
 						<td><button class="sort btn text-primary-color" data-sort="date">Expiry Date</button></td>
-						<td><button class="btn text-primary-color">Fulfill</button></td>
+						<td><button class="btn text-primary-color" data-sort="fulfilled">Fulfill</button></td>
 						
 					</tr>
 					<tbody id="tableProd" class="list">
@@ -195,6 +205,7 @@
 <%@ include file="static_resources/onclickCreateScript.html"%>
 <%@ include file="static_resources/animateScript.html" %>
 <%@ include file="static_resources/initListpromises.html"%>
+<%@ include file="static_resources/filterProm.html"%>
 </body>
 </html>
 <% } %>
