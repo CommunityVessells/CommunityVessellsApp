@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="org.ffcc.communityVessells.app.models.Volunteer"%>
@@ -157,7 +159,7 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 								for (Request r : requestsList) {
 									 
 									//check for requests closing max 5 days from now
-									if((int)((r.getClosedate().getTime()-(new java.util.Date().getTime())) / (1000 * 60 * 60 * 24))<=5) {
+									if(((int)((r.getClosedate().getTime()-(new java.util.Date().getTime())) / (1000 * 60 * 60 * 24))<=5) && (r.getClosedate().after(new java.sql.Date(new java.util.Date().getTime())))) {
 							%>
 <div class="well text-center slideanim">
 							<h4 class="list-group-item-heading anton">
@@ -243,19 +245,37 @@ if(session.getAttribute("flag")!=null && session.getAttribute("usertype").equals
 							<p><b>Location: </b><%=r.getAddress() %></p>
 
     						
-    							
+	
 							<%-- URI rewrite repoID --%>
-							<% if(session.getAttribute("usertype")!=null && session.getAttribute("usertype").equals("volunteer")) {%>
+							<%if(session.getAttribute("usertype")!=null && session.getAttribute("usertype").equals("volunteer")) {%>
+							    						<% if(!r.getClosedate().before(new java.sql.Date(new java.util.Date().getTime()))) {%>
+    						
 							<a class="btn btn-info btn-raised updateRepo" title="Make a Promise" href="<%=response.encodeURL ("promise.jsp?requestID="+Integer.toString(r.getRequestID()))%>">
 								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</a>
-							<% } 
+														<%} %>
+							    						<% if(r.getClosedate().before(new java.sql.Date(new java.util.Date().getTime()))) {%>
+							<button class="btn btn-info btn-raised updateRepo" title="Request Closed"  disabled>
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</button>    						
+														<%} %>
+							<% }
+							
 							 else { %>
+							 <% if(r.getClosedate().before(new java.sql.Date(new java.util.Date().getTime()))) {%>
+							<button class="btn btn-info btn-raised updateRepo" title="Request Closed"  disabled>
+								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
+									id="symbolview"> </span>
+							</button>    						
+							<%} %>
+							<% if(!r.getClosedate().before(new java.sql.Date(new java.util.Date().getTime()))) {%>
 							<button class="btn btn-info btn-raised updateRepo" title="You need to sign in to promise" data-toggle="modal" data-target="#loginModal">
 								<b>Promise </b><span class="glyphicon glyphicon-eye-open"
 									id="symbolview"> </span>
 							</button>
+							<% } %>
 							<% } %>
 							
 
